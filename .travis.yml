@@ -6,6 +6,7 @@ php:
   - 5.6
 
 before_script:
+  - composer install
   - cp app/phpunit.xml.dist app/phpunit.xml
 
 script: phpunit --configuration app/phpunit.xml
