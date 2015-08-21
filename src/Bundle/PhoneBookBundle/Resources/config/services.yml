@@ -1,0 +1,4 @@
+services:
+#    arkon_phone_book.example:
+#        class: Arkon\Bundle\PhoneBookBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

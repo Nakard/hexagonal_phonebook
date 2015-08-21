@@ -1,0 +1,4 @@
+arkon_phone_book:
+    resource: "@ArkonPhoneBookBundle/Resources/config/routing.yml"
+    prefix:   /
+

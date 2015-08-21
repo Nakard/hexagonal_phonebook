@@ -1,0 +1,3 @@
+arkon_phone_book_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ArkonPhoneBookBundle:Default:index }
