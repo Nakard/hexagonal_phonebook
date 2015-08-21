@@ -8,6 +8,7 @@
             "SymfonyStandard\\": "app/SymfonyStandard/"
         }
     },
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.4",
         "symfony/symfony": "2.7.*",
@@ -22,7 +23,8 @@
         "incenteev/composer-parameter-handler": "~2.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "phpunit/phpunit": "~4.8"
     },
     "scripts": {
         "post-root-package-install": [
