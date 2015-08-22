@@ -1,3 +1,3 @@
-arkon_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ArkonUserBundle:Default:index }
+arkon_user_listUsers:
+    path: /users.{_format}
+    defaults: { _controller: arkon.user.list_users_controller:listUsers }

@@ -18,6 +18,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Arkon\Bundle\PhoneBookBundle\ArkonPhoneBookBundle(),
             new Arkon\Bundle\UserBundle\ArkonUserBundle(),
+            new \JMS\SerializerBundle\JMSSerializerBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new \Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,4 +1,13 @@
 services:
-#    arkon_user.example:
-#        class: Arkon\Bundle\UserBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    arkon.user.list_users_controller:
+        class: Arkon\Bundle\UserBundle\Controller\ListUsersController
+        arguments:
+            - @arkon.user.user_repository_db
+            - @templating
+
+    arkon.user.user_repository_db:
+        class:           Arkon\Bundle\UserBundle\Repository\DbUserRepository
+        factory_service: doctrine
+        factory_method:  getRepository
+        arguments:
+            - ArkonUserBundle:User
