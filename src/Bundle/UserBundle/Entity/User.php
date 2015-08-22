@@ -4,6 +4,7 @@ namespace Arkon\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Hateoas\Configuration\Annotation as Hateoas;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
@@ -28,12 +29,30 @@ class User
     /**
      * @var string
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(
+     *      min="3",
+     *      max="50",
+     *      minMessage="First name can't be shorter than 3 letters",
+     *      maxMessage="First name can't be longer than 50 letters"
+     * )
+     * @Assert\Regex(pattern="/^[a-z]+$/i", message="First name can only contain letters")
+     * @Assert\Type(type="string", message="{{value}} is not a string")
+     * @Assert\NotNull(message="First name is required")
      */
     private $firstName;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(
+     *      min="3",
+     *      max="50",
+     *      minMessage="Last name can't be shorter than 3 letters",
+     *      maxMessage="Last name can't be longer than 50 letters"
+     * )
+     * @Assert\Regex(pattern="/^[a-z]+$/i", message="Last name can only contain letters")
+     * @Assert\Type(type="string", message="{{value}} is not a string")
+     * @Assert\NotNull(message="Last name is required")
      */
     private $lastName;
 

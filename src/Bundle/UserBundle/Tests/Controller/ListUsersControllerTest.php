@@ -5,7 +5,8 @@ namespace Arkon\Bundle\UserBundle\Tests\Controller;
 use Arkon\Bundle\UserBundle\Controller\ListUsersController;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\ListUsers;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Arkon\Bundle\UtilityBundle\Criteria\CriteriaBuilderInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ListUsersControllerTest
@@ -16,38 +17,24 @@ class ListUsersControllerTest extends \PHPUnit_Framework_TestCase
     /** @var ListUsersController */
     private $controller;
 
-    /** @var EngineInterface|\PHPUnit_Framework_MockObject_MockObject */
-    private $templatingMock;
-
     /** @var ListUsers|\PHPUnit_Framework_MockObject_MockObject */
     private $useCaseMock;
+
+    /** @var CriteriaBuilderInterface|\PHPUnit_Framework_MockObject_MockObject */
+    private $builderMock;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->templatingMock = $this->getMockBuilder(EngineInterface::class)->getMock();
         $this->useCaseMock = $this->getMockBuilder(ListUsers::class)->disableOriginalConstructor()->getMock();
+        $this->builderMock = $this->getMockBuilder(CriteriaBuilderInterface::class)->getMock();
 
-        $this->controller = new ListUsersController($this->useCaseMock, $this->templatingMock);
+        $this->controller = new ListUsersController($this->useCaseMock, $this->builderMock);
     }
 
-    /**
-     * @return array
-     */
-    public function formatProvider()
-    {
-        return [
-            ['json'],
-            ['xml']
-        ];
-    }
 
-    /**
-     * @dataProvider formatProvider
-     * @param string $format
-     */
-    public function testListUsersUsesPassedFormatInResponse($format)
+    public function testListUsers()
     {
         $user = new User();
         $user->setFirstName('Wincenty')->setLastName('Kwiatek');
@@ -55,15 +42,13 @@ class ListUsersControllerTest extends \PHPUnit_Framework_TestCase
         $this->useCaseMock->expects($this->any())
             ->method('listUsers')
             ->will($this->returnValue([$user]));
+        // Assertion for filtering query params
+        $this->builderMock->expects($this->once())
+            ->method('buildCriteriaFromRequestForClass')
+            ->will($this->returnValue([]));
 
-        // Assertion for correct format used and passing of variable to template
-        $this->templatingMock->expects($this->once())
-            ->method('renderResponse')
-            ->with(
-                'ArkonUserBundle::listUsers.' . $format . '.twig',
-                ['users' => [$user]]
-            );
+        $request = new Request(['unknownfield' => 'test', 'firstName' => 'Wincenty']);
 
-        $this->controller->listUsers($format);
+        $this->assertSame([$user], $this->controller->listUsersAction($request));
     }
 }

@@ -3,7 +3,19 @@ services:
         class: Arkon\Bundle\UserBundle\Controller\ListUsersController
         arguments:
             - @arkon.user.list_users
-            - @templating
+            - @arkon.utility.criteria_builder
+
+    arkon.user.get_user_controller:
+        class: Arkon\Bundle\UserBundle\Controller\GetUserController
+        arguments:
+            - @arkon.user.get_user
+
+    arkon.user.create_user_controller:
+        class: Arkon\Bundle\UserBundle\Controller\CreateUserController
+        arguments:
+            - @arkon.user.create_user
+            - @form.factory
+            - @router
 
     arkon.user.user_repository_db:
         class:           Arkon\Bundle\UserBundle\Repository\DbUserRepository
@@ -16,3 +28,14 @@ services:
         class: Arkon\Bundle\UserBundle\UseCase\ListUsers
         arguments:
             - @arkon.user.user_repository_db
+
+    arkon.user.get_user:
+        class: Arkon\Bundle\UserBundle\UseCase\GetUser
+        arguments:
+            - @arkon.user.user_repository_db
+
+    arkon.user.create_user:
+        class: Arkon\Bundle\UserBundle\UseCase\CreateUser
+        arguments:
+            - @arkon.user.user_repository_db
+            - @validator

@@ -1,5 +1,18 @@
 arkon_user_listUsers:
-    path: /users.{_format}
-    defaults: { _controller: arkon.user.list_users_controller:listUsers }
+    path: /users
+    defaults: { _controller: arkon.user.list_users_controller:listUsersAction }
     requirements:
-        _format: json|xml
+        _method: GET
+
+arkon_user_getUser:
+    path: /users/{id}
+    defaults: { _controller: arkon.user.get_user_controller:getUserAction }
+    requirements:
+        id: \d+
+        _method: GET
+
+arkon_user_createUser:
+    path: /users
+    defaults: { _controller: arkon.user.create_user_controller:createUserAction }
+    requirements:
+        _method: POST

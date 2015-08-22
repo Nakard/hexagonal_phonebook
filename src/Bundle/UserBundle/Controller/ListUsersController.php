@@ -2,9 +2,11 @@
 
 namespace Arkon\Bundle\UserBundle\Controller;
 
+use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\ListUsers;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\HttpFoundation\Response;
+use Arkon\Bundle\UtilityBundle\Criteria\CriteriaBuilderInterface;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ListUsersController
@@ -12,33 +14,31 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ListUsersController
 {
-    /** @var ListUsers  */
+    /** @var ListUsers */
     private $useCase;
 
-    /** @var EngineInterface */
-    private $templating;
+    /** @var CriteriaBuilderInterface */
+    private $criteriaBuilder;
 
     /**
      * @param ListUsers $useCase
-     * @param EngineInterface $templating
+     * @param CriteriaBuilderInterface $criteriaBuilder
      */
-    public function __construct(ListUsers $useCase, EngineInterface $templating)
+    public function __construct(ListUsers $useCase, CriteriaBuilderInterface $criteriaBuilder)
     {
         $this->useCase = $useCase;
-        $this->templating = $templating;
+        $this->criteriaBuilder = $criteriaBuilder;
     }
 
     /**
-     * @param string $_format
-     * @return Response
+     * @Rest\View()
+     * @param Request $request
+     * @return User[]
      */
-    public function listUsers($_format)
+    public function listUsersAction(Request $request)
     {
-        $users = $this->useCase->listUsers();
-
-        return $this->templating->renderResponse(
-            'ArkonUserBundle::listUsers.' . $_format . '.twig',
-            ['users' => $users]
+        return $this->useCase->listUsers(
+            $this->criteriaBuilder->buildCriteriaFromRequestForClass($request, User::class)
         );
     }
 }

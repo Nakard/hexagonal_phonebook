@@ -2,6 +2,7 @@
 
 namespace Arkon\Bundle\UserBundle\Repository;
 
+use Arkon\Bundle\UserBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -10,5 +11,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class DbUserRepository extends EntityRepository implements UserRepositoryInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function save(User $user)
+    {
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function findById($id)
+    {
+        return $this->find($id);
+    }
 }

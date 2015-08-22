@@ -2,14 +2,14 @@
 
 namespace Arkon\Bundle\UserBundle\UseCase;
 
-use Arkon\Bundle\UserBundle\Repository\UserRepositoryInterface;
 use Arkon\Bundle\UserBundle\Entity\User;
+use Arkon\Bundle\UserBundle\Repository\UserRepositoryInterface;
 
 /**
- * Class ListUsers
+ * Class GetUser
  * @package Arkon\Bundle\UserBundle\UseCase
  */
-class ListUsers
+class GetUser
 {
     /** @var UserRepositoryInterface */
     private $repository;
@@ -23,11 +23,11 @@ class ListUsers
     }
 
     /**
-     * @param array $criteria
-     * @return User[]
+     * @param $id
+     * @return User
      */
-    public function listUsers(array $criteria = [])
+    public function getUser($id)
     {
-        return $this->repository->findBy($criteria);
+        return $this->repository->findById($id);
     }
 }

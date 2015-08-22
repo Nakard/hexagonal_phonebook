@@ -11,7 +11,23 @@ use Arkon\Bundle\UserBundle\Entity\User;
 interface UserRepositoryInterface
 {
     /**
+     * @param array $criteria
+     * @param array $orderBy
+     * @param int $limit
+     * @param int $offset
      * @return User[]
      */
-    public function findAll();
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null);
+
+    /**
+     * @param User $user
+     * @return void
+     */
+    public function save(User $user);
+
+    /**
+     * @param int $id
+     * @return User
+     */
+    public function findById($id);
 }

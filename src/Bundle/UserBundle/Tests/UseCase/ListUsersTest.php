@@ -36,7 +36,7 @@ class ListUsersTest extends \PHPUnit_Framework_TestCase
         $expectedUsers = [$user1, $user2];
 
         $this->repositoryMock->expects($this->any())
-            ->method('findAll')
+            ->method('findBy')
             ->will($this->returnValue($expectedUsers));
 
         $this->assertSame($expectedUsers, $this->useCase->listUsers());

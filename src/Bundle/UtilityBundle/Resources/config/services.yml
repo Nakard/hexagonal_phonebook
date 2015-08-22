@@ -1,0 +1,3 @@
+services:
+    arkon.utility.criteria_builder:
+        class: Arkon\Bundle\UtilityBundle\Criteria\CriteriaBuilder
