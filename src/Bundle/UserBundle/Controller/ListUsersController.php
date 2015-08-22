@@ -2,7 +2,7 @@
 
 namespace Arkon\Bundle\UserBundle\Controller;
 
-use Arkon\Bundle\UserBundle\Repository\UserRepositoryInterface;
+use Arkon\Bundle\UserBundle\UseCase\ListUsers;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,18 +12,19 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ListUsersController
 {
-    /** @var UserRepositoryInterface  */
-    private $repository;
+    /** @var ListUsers  */
+    private $useCase;
 
     /** @var EngineInterface */
     private $templating;
 
     /**
-     * @param UserRepositoryInterface $repository
+     * @param ListUsers $useCase
+     * @param EngineInterface $templating
      */
-    public function __construct(UserRepositoryInterface $repository, EngineInterface $templating)
+    public function __construct(ListUsers $useCase, EngineInterface $templating)
     {
-        $this->repository = $repository;
+        $this->useCase = $useCase;
         $this->templating = $templating;
     }
 
@@ -33,7 +34,7 @@ class ListUsersController
      */
     public function listUsers($_format)
     {
-        $users = $this->repository->findAll();
+        $users = $this->useCase->listUsers();
 
         return $this->templating->renderResponse(
             'ArkonUserBundle::listUsers.' . $_format . '.twig',

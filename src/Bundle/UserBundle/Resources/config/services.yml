@@ -2,7 +2,7 @@ services:
     arkon.user.list_users_controller:
         class: Arkon\Bundle\UserBundle\Controller\ListUsersController
         arguments:
-            - @arkon.user.user_repository_db
+            - @arkon.user.list_users
             - @templating
 
     arkon.user.user_repository_db:
@@ -11,3 +11,8 @@ services:
         factory_method:  getRepository
         arguments:
             - ArkonUserBundle:User
+
+    arkon.user.list_users:
+        class: Arkon\Bundle\UserBundle\UseCase\ListUsers
+        arguments:
+            - @arkon.user.user_repository_db

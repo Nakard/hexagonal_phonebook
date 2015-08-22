@@ -1,3 +1,5 @@
 arkon_user_listUsers:
     path: /users.{_format}
     defaults: { _controller: arkon.user.list_users_controller:listUsers }
+    requirements:
+        _format: json|xml
