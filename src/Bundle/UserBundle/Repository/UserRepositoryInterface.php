@@ -30,4 +30,10 @@ interface UserRepositoryInterface
      * @return User
      */
     public function findById($id);
+
+    /**
+     * @param string $nickname
+     * @return bool
+     */
+    public function nicknameExists($nickname);
 }

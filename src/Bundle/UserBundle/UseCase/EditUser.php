@@ -3,15 +3,16 @@
 namespace Arkon\Bundle\UserBundle\UseCase;
 
 use Arkon\Bundle\UserBundle\Entity\User;
-use Arkon\Bundle\UserBundle\Exception\CreateUserException;
+use Arkon\Bundle\UserBundle\Exception\EditUserException;
+use Arkon\Bundle\UserBundle\Exception\NotExistingUserException;
 use Arkon\Bundle\UserBundle\Repository\UserRepositoryInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * Class CreateUser
+ * Class EditUser
  * @package Arkon\Bundle\UserBundle\UseCase
  */
-class CreateUser
+class EditUser
 {
     /** @var UserRepositoryInterface */
     private $repository;
@@ -33,7 +34,7 @@ class CreateUser
      * @param User $user
      * @param bool $validate Flag used to enable validation
      */
-    public function createUser(User $user, $validate = true)
+    public function editUser(User $user, $validate = true)
     {
         if ($validate) {
             $this->validateUser($user);
@@ -44,13 +45,18 @@ class CreateUser
 
     /**
      * @param User $user
-     * @throws CreateUserException
+     * @throws EditUserException
+     *
      */
     private function validateUser(User $user)
     {
+        if (!$this->repository->findById($user->getId())) {
+            throw new NotExistingUserException(sprintf('User with [id = %d] does not exist', $user->getId()));
+        }
+
         $violations = $this->validator->validate($user);
         if ($violations->count()) {
-            throw new CreateUserException($violations, 'Invalid User entity.');
+            throw new EditUserException($violations, 'Invalid User entity.');
         }
     }
 }

@@ -16,3 +16,10 @@ arkon_user_createUser:
     defaults: { _controller: arkon.user.create_user_controller:createUserAction }
     requirements:
         _method: POST
+
+arkon_user_editUser:
+    path: /users/{id}
+    defaults: { _controller: arkon.user.edit_user_controller:editUserAction }
+    requirements:
+        _method: PUT
+        id: \d+

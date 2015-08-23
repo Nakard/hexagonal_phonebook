@@ -3,47 +3,45 @@
 namespace Arkon\Bundle\UserBundle\Controller;
 
 use Arkon\Bundle\UserBundle\Entity\User;
-use Arkon\Bundle\UserBundle\Form\CreateUserType;
-use Arkon\Bundle\UserBundle\UseCase\CreateUser;
-use FOS\RestBundle\View\View;
+use Arkon\Bundle\UserBundle\Form\EditUserType;
+use Arkon\Bundle\UserBundle\UseCase\EditUser;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
+use FOS\RestBundle\View\View;
 
 /**
- * Class CreateUserController
+ * Class EditUserController
  * @package Arkon\Bundle\UserBundle\Controller
  */
-class CreateUserController
+class EditUserController
 {
-    /** @var CreateUser */
+    /** @var EditUser */
     private $useCase;
 
     /** @var FormFactoryInterface */
     private $formFactory;
 
-    /** @var RouterInterface */
-    private $router;
-
     /**
-     * @param CreateUser $useCase
+     * @param EditUser $useCase
      * @param FormFactoryInterface $formFactory
-     * @param RouterInterface $router
      */
-    public function __construct(CreateUser $useCase, FormFactoryInterface $formFactory, RouterInterface $router)
+    public function __construct(EditUser $useCase, FormFactoryInterface $formFactory)
     {
         $this->useCase = $useCase;
         $this->formFactory = $formFactory;
-        $this->router = $router;
     }
 
     /**
+     * @ParamConverter("user", class="ArkonUserBundle:User")
+     * @param User $user
      * @param Request $request
      * @return View
      */
-    public function createUserAction(Request $request)
+    public function editUserAction(User $user, Request $request)
     {
-        return $this->processForm(new User(), $request);
+        return $this->processForm($user, $request);
     }
 
     /**
@@ -53,19 +51,18 @@ class CreateUserController
      */
     private function processForm(User $user, Request $request)
     {
-        $form = $this->formFactory->create(new CreateUserType(), $user);
+        $form = $this->formFactory->create(new EditUserType(), $user);
         $form->handleRequest($request);
 
         if (!$form->isValid()) {
             return new View($form, 400);
         }
 
-        $this->useCase->createUser($user);
+        $this->useCase->editUser($user);
 
         return new View(
             $user,
-            201,
-            ['Location' => $this->router->generate('arkon_user_getUser', ['id' => $user->getId()], true)]
+            204
         );
     }
 }

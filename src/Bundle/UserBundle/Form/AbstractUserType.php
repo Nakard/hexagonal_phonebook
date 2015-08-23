@@ -2,16 +2,16 @@
 
 namespace Arkon\Bundle\UserBundle\Form;
 
+use Arkon\Bundle\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Arkon\Bundle\UserBundle\Entity\User;
 
 /**
- * Class UserType
+ * Class AbstractUserType
  * @package Arkon\Bundle\UserBundle\Form
  */
-class UserType extends AbstractType
+abstract class AbstractUserType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -22,6 +22,7 @@ class UserType extends AbstractType
 
         $builder->add('firstName');
         $builder->add('lastName');
+        $builder->add('nickname');
     }
 
     /**
@@ -33,7 +34,7 @@ class UserType extends AbstractType
 
         $resolver->setDefaults([
             'data_class' => User::class,
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ]);
     }
 

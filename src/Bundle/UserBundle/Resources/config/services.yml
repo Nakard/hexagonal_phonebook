@@ -1,4 +1,5 @@
 services:
+    # Controllers
     arkon.user.list_users_controller:
         class: Arkon\Bundle\UserBundle\Controller\ListUsersController
         arguments:
@@ -17,6 +18,13 @@ services:
             - @form.factory
             - @router
 
+    arkon.user.edit_user_controller:
+        class: Arkon\Bundle\UserBundle\Controller\EditUserController
+        arguments:
+            - @arkon.user.edit_user
+            - @form.factory
+
+    # Services
     arkon.user.user_repository_db:
         class:           Arkon\Bundle\UserBundle\Repository\DbUserRepository
         factory_service: doctrine
@@ -24,6 +32,7 @@ services:
         arguments:
             - ArkonUserBundle:User
 
+    # Use cases
     arkon.user.list_users:
         class: Arkon\Bundle\UserBundle\UseCase\ListUsers
         arguments:
@@ -36,6 +45,12 @@ services:
 
     arkon.user.create_user:
         class: Arkon\Bundle\UserBundle\UseCase\CreateUser
+        arguments:
+            - @arkon.user.user_repository_db
+            - @validator
+
+    arkon.user.edit_user:
+        class: Arkon\Bundle\UserBundle\UseCase\EditUser
         arguments:
             - @arkon.user.user_repository_db
             - @validator
