@@ -5,7 +5,9 @@ namespace Arkon\Bundle\UserBundle\Tests\Controller;
 use Arkon\Bundle\UserBundle\Controller\ListUsersController;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\ListUsers;
-use Arkon\Bundle\UtilityBundle\Criteria\CriteriaBuilderInterface;
+use FOS\RestBundle\View\View;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -20,35 +22,72 @@ class ListUsersControllerTest extends \PHPUnit_Framework_TestCase
     /** @var ListUsers|\PHPUnit_Framework_MockObject_MockObject */
     private $useCaseMock;
 
-    /** @var CriteriaBuilderInterface|\PHPUnit_Framework_MockObject_MockObject */
-    private $builderMock;
+    /** @var FormInterface|\PHPUnit_Framework_MockObject_MockObject */
+    private $formMock;
 
     protected function setUp()
     {
         parent::setUp();
 
         $this->useCaseMock = $this->getMockBuilder(ListUsers::class)->disableOriginalConstructor()->getMock();
-        $this->builderMock = $this->getMockBuilder(CriteriaBuilderInterface::class)->getMock();
 
-        $this->controller = new ListUsersController($this->useCaseMock, $this->builderMock);
-    }
-
-
-    public function testListUsers()
-    {
-        $user = new User();
-        $user->setFirstName('Wincenty')->setLastName('Kwiatek');
+        $this->formMock = $this->getMockBuilder(FormInterface::class)->getMock();
+        /** @var FormFactoryInterface|\PHPUnit_Framework_MockObject_MockObject $formFactoryMock */
+        $formFactoryMock = $this->getMockBuilder(FormFactoryInterface::class)->getMock();
+        $formFactoryMock->expects($this->any())->method('create')->will($this->returnValue($this->formMock));
 
         $this->useCaseMock->expects($this->any())
             ->method('listUsers')
-            ->will($this->returnValue([$user]));
-        // Assertion for filtering query params
-        $this->builderMock->expects($this->once())
-            ->method('buildCriteriaFromRequestForClass')
-            ->will($this->returnValue([]));
+            ->will($this->returnValue([$this->createExampleUser()]));
 
-        $request = new Request(['unknownfield' => 'test', 'firstName' => 'Wincenty']);
+        $this->controller = new ListUsersController($this->useCaseMock, $formFactoryMock);
+    }
 
-        $this->assertSame([$user], $this->controller->listUsersAction($request));
+    public function testListUsersWithEmptySearchFormWillPassThroughToListing()
+    {
+        $user = $this->createExampleUser();
+
+        $this->formMock->expects($this->once())->method('isEmpty')->will($this->returnValue(true));
+        $this->formMock->expects($this->never())->method('isValid');
+
+        $expectedResult = new View([$user], 200);
+        $this->assertEquals($expectedResult, $this->controller->listUsersAction($this->createExampleRequest()));
+    }
+
+    public function testListUsersWithInvalidSearchFormWillReturn400Response()
+    {
+        $this->formMock->expects($this->once())->method('isEmpty')->will($this->returnValue(false));
+        $this->formMock->expects($this->once())->method('isValid')->will($this->returnValue(false));
+
+        $expectedResult = new View($this->formMock, 400);
+        $this->assertEquals($expectedResult, $this->controller->listUsersAction($this->createExampleRequest()));
+    }
+
+    public function testListUsersForValidSearchForm()
+    {
+        $user = $this->createExampleUser();
+
+        // Assertion for form validation
+        $this->formMock->expects($this->once())->method('isEmpty')->will($this->returnValue(false));
+        $this->formMock->expects($this->once())->method('isValid')->will($this->returnValue(true));
+
+        $expectedResult = new View([$user], 200);
+        $this->assertEquals($expectedResult, $this->controller->listUsersAction($this->createExampleRequest()));
+    }
+
+    /**
+     * @return Request
+     */
+    private function createExampleRequest()
+    {
+        return new Request();
+    }
+
+    /**
+     * @return User
+     */
+    private function createExampleUser()
+    {
+        return new User();
     }
 }

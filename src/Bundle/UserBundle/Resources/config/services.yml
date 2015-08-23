@@ -4,7 +4,7 @@ services:
         class: Arkon\Bundle\UserBundle\Controller\ListUsersController
         arguments:
             - @arkon.user.list_users
-            - @arkon.utility.criteria_builder
+            - @form.factory
 
     arkon.user.get_user_controller:
         class: Arkon\Bundle\UserBundle\Controller\GetUserController
@@ -23,6 +23,11 @@ services:
         arguments:
             - @arkon.user.edit_user
             - @form.factory
+
+    arkon.user.remove_user_controller:
+        class: Arkon\Bundle\UserBundle\Controller\RemoveUserController
+        arguments:
+            - @arkon.user.remove_user
 
     # Services
     arkon.user.user_repository_db:
@@ -54,3 +59,8 @@ services:
         arguments:
             - @arkon.user.user_repository_db
             - @validator
+
+    arkon.user.remove_user:
+        class: Arkon\Bundle\UserBundle\UseCase\RemoveUser
+        arguments:
+            - @arkon.user.user_repository_db

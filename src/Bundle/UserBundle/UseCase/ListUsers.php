@@ -4,6 +4,7 @@ namespace Arkon\Bundle\UserBundle\UseCase;
 
 use Arkon\Bundle\UserBundle\Repository\UserRepositoryInterface;
 use Arkon\Bundle\UserBundle\Entity\User;
+use Arkon\Bundle\UserBundle\Search\UserSearch;
 
 /**
  * Class ListUsers
@@ -23,11 +24,11 @@ class ListUsers
     }
 
     /**
-     * @param array $criteria
+     * @param UserSearch|null $search
      * @return User[]
      */
-    public function listUsers(array $criteria = [])
+    public function listUsers(UserSearch $search = null)
     {
-        return $this->repository->findBy($criteria);
+        return $this->repository->search($search);
     }
 }

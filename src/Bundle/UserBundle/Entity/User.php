@@ -10,29 +10,35 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
+ * @package Arkon\Bundle\UserBundle\Entity
  *
  * @ORM\Entity(repositoryClass="Arkon\Bundle\UserBundle\Repository\DbUserRepository")
  * @ORM\Table("user", indexes={@ORM\Index(name="nickname_idx", columns={"nickname"})})
+ *
  * @UniqueEntity(fields={"nickname"}, repositoryMethod="findByNickname", message="Nickname is already used.")
  *
  * @Hateoas\Relation("self", href="expr('/users/' ~ object.getId())")
  *
- * @package Arkon\Bundle\UserBundle\Entity
  * @JMS\XmlRoot("user")
  */
 class User
 {
     /**
      * @var integer
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id()
      * @ORM\GeneratedValue()
+     *
+     * @JMS\Type("integer")
      */
     private $id;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=50)
+     *
      * @Assert\Length(
      *      min="3",
      *      max="50",
@@ -42,12 +48,16 @@ class User
      * @Assert\Regex(pattern="/^[a-z]+$/i", message="First name can only contain letters.")
      * @Assert\Type(type="string", message="{{value}} is not a string.")
      * @Assert\NotNull(message="First name is required.")
+     *
+     * @JMS\Type("string")
      */
     private $firstName;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=50)
+     *
      * @Assert\Length(
      *      min="3",
      *      max="50",
@@ -57,12 +67,16 @@ class User
      * @Assert\Regex(pattern="/^[a-z]+$/i", message="Last name can only contain letters.")
      * @Assert\Type(type="string", message="{{value}} is not a string.")
      * @Assert\NotNull(message="Last name is required.")
+     *
+     * @JMS\Type("string")
      */
     private $lastName;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", length=100)
+     *
      * @Assert\Length(
      *      min="5",
      *      max="100",
@@ -72,6 +86,8 @@ class User
      * @Assert\Regex(pattern="/^[a-z0-9]+$/i", message="Nickname can contain only letters and digits.")
      * @Assert\Type(type="string", message="{{value}} is not a string.")
      * @Assert\NotNull(message="Nickname is required.")
+     *
+     * @JMS\Type("string")
      */
     private $nickname;
 
@@ -145,13 +161,5 @@ class User
     {
         $this->nickname = $nickname;
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isNew()
-    {
-        return isset($this->id);
     }
 }

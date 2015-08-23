@@ -3,9 +3,11 @@
 namespace Arkon\Bundle\UserBundle\Controller;
 
 use Arkon\Bundle\UserBundle\Entity\User;
+use Arkon\Bundle\UserBundle\Form\SearchUsersType;
 use Arkon\Bundle\UserBundle\UseCase\ListUsers;
-use Arkon\Bundle\UtilityBundle\Criteria\CriteriaBuilderInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\View\View;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -17,28 +19,44 @@ class ListUsersController
     /** @var ListUsers */
     private $useCase;
 
-    /** @var CriteriaBuilderInterface */
-    private $criteriaBuilder;
+    /** @var FormFactoryInterface */
+    private $formFactory;
 
     /**
      * @param ListUsers $useCase
-     * @param CriteriaBuilderInterface $criteriaBuilder
+     * @param FormFactoryInterface $formFactory
      */
-    public function __construct(ListUsers $useCase, CriteriaBuilderInterface $criteriaBuilder)
+    public function __construct(ListUsers $useCase, FormFactoryInterface $formFactory)
     {
         $this->useCase = $useCase;
-        $this->criteriaBuilder = $criteriaBuilder;
+        $this->formFactory = $formFactory;
     }
 
     /**
-     * @Rest\View()
      * @param Request $request
      * @return User[]
      */
     public function listUsersAction(Request $request)
     {
-        return $this->useCase->listUsers(
-            $this->criteriaBuilder->buildCriteriaFromRequestForClass($request, User::class)
+        return $this->processForm($request);
+    }
+
+    /**
+     * @param Request $request
+     * @return View
+     */
+    private function processForm(Request $request)
+    {
+        $form = $this->formFactory->create(new SearchUsersType());
+        $form->handleRequest($request);
+
+        if (!$form->isEmpty() && !$form->isValid()) {
+            return new View($form, 400);
+        }
+
+        return new View(
+            $this->useCase->listUsers($form->getData()),
+            200
         );
     }
 }

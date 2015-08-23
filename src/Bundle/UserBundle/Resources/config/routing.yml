@@ -23,3 +23,10 @@ arkon_user_editUser:
     requirements:
         _method: PUT
         id: \d+
+
+arkon_user_removeUser:
+    path: /users/{id}
+    defaults: { _controller: arkon.user.remove_user_controller:removeUserAction }
+    requirements:
+        _method: DELETE
+        id: \d+

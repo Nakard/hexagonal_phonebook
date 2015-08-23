@@ -3,6 +3,7 @@
 namespace Arkon\Bundle\UserBundle\Repository;
 
 use Arkon\Bundle\UserBundle\Entity\User;
+use Arkon\Bundle\UserBundle\Search\UserSearch;
 
 /**
  * Interface UserRepositoryInterface
@@ -11,13 +12,10 @@ use Arkon\Bundle\UserBundle\Entity\User;
 interface UserRepositoryInterface
 {
     /**
-     * @param array $criteria
-     * @param array $orderBy
-     * @param int $limit
-     * @param int $offset
+     * @param UserSearch|null $search
      * @return User[]
      */
-    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null);
+    public function search(UserSearch $search = null);
 
     /**
      * @param User $user
@@ -36,4 +34,10 @@ interface UserRepositoryInterface
      * @return bool
      */
     public function nicknameExists($nickname);
+
+    /**
+     * @param User $user
+     * @return void
+     */
+    public function remove(User $user);
 }

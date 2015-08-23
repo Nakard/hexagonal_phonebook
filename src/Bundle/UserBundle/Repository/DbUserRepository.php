@@ -3,6 +3,8 @@
 namespace Arkon\Bundle\UserBundle\Repository;
 
 use Arkon\Bundle\UserBundle\Entity\User;
+use Arkon\Bundle\UserBundle\Search\UserSearch;
+use Doctrine\Common\Collections;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 
@@ -51,5 +53,44 @@ class DbUserRepository extends EntityRepository implements UserRepositoryInterfa
             ->setParameter('nickname', $criteria['nickname'])
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function remove(User $user)
+    {
+        $this->getEntityManager()->remove($user);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function search(UserSearch $search = null)
+    {
+        return $this->matching($this->buildCriteriaFromSearch($search));
+    }
+
+    /**
+     * @param UserSearch|null $search
+     * @return Collections\Criteria
+     */
+    private function buildCriteriaFromSearch(UserSearch $search = null)
+    {
+        $criteria = new Collections\Criteria();
+        if (!isset($search)) {
+            return $criteria;
+        }
+
+        foreach ($search->getAsComparisonDefinitions() as $definition) {
+            list($fieldName, $comparisonOperator, $fieldValue) = $definition;
+            if (!isset($fieldValue)) { // ignore nulls in search form
+                continue;
+            }
+            $criteria->andWhere(new Collections\Expr\Comparison($fieldName, $comparisonOperator, $fieldValue));
+        }
+
+        return $criteria;
     }
 }
