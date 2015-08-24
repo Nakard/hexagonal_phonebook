@@ -34,7 +34,7 @@ class GetUserController
         $user = $this->useCase->getUser($id);
 
         if (!$user) {
-            throw new NotFoundHttpException('User not found!');
+            throw new NotFoundHttpException('User not found.');
         }
 
         return $user;

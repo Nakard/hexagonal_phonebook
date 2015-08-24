@@ -45,9 +45,8 @@ class DbUserRepository extends EntityRepository implements UserRepositoryInterfa
      */
     public function findByNickname(array $criteria)
     {
-        return $this->getEntityManager()->createQueryBuilder()
+        return $this->createQueryBuilder('u')
             ->select('u.id, u.nickname')
-            ->from('ArkonUserBundle:User', 'u')
             ->where('u.nickname = :nickname')
             ->setMaxResults(1)
             ->setParameter('nickname', $criteria['nickname'])

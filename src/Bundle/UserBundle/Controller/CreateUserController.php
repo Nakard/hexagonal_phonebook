@@ -60,7 +60,7 @@ class CreateUserController
             return new View($form, 400);
         }
 
-        $this->useCase->createUser($user);
+        $this->useCase->createUser($user, false);
 
         return new View(
             $user,

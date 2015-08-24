@@ -2,6 +2,8 @@
 
 namespace Arkon\Bundle\UserBundle\Entity;
 
+use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as JMS;
@@ -13,9 +15,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package Arkon\Bundle\UserBundle\Entity
  *
  * @ORM\Entity(repositoryClass="Arkon\Bundle\UserBundle\Repository\DbUserRepository")
- * @ORM\Table("user", indexes={@ORM\Index(name="nickname_idx", columns={"nickname"})})
+ * @ORM\Table("users", indexes={@ORM\Index(name="nickname_idx", columns={"nickname"})})
  *
- * @UniqueEntity(fields={"nickname"}, repositoryMethod="findByNickname", message="Nickname is already used.")
+ * @UniqueEntity(
+ *      fields={"nickname"},
+ *      repositoryMethod="findByNickname",
+ *      message="Nickname is already used.",
+ *      groups={"unique"}
+ * )
  *
  * @Hateoas\Relation("self", href="expr('/users/' ~ object.getId())")
  *
@@ -43,10 +50,10 @@ class User
      *      min="3",
      *      max="50",
      *      minMessage="First name can't be shorter than 3 letters.",
-     *      maxMessage="First name can't be longer than 50 letter.s"
+     *      maxMessage="First name can't be longer than 50 letters."
      * )
      * @Assert\Regex(pattern="/^[a-z]+$/i", message="First name can only contain letters.")
-     * @Assert\Type(type="string", message="{{value}} is not a string.")
+     * @Assert\Type(type="string", message="{{ value }} is not a string.")
      * @Assert\NotNull(message="First name is required.")
      *
      * @JMS\Type("string")
@@ -65,7 +72,7 @@ class User
      *      maxMessage="Last name can't be longer than 50 letters."
      * )
      * @Assert\Regex(pattern="/^[a-z]+$/i", message="Last name can only contain letters.")
-     * @Assert\Type(type="string", message="{{value}} is not a string.")
+     * @Assert\Type(type="string", message="{{ value }} is not a string.")
      * @Assert\NotNull(message="Last name is required.")
      *
      * @JMS\Type("string")
@@ -84,12 +91,35 @@ class User
      *      maxMessage="Nickname can't be longer than 100 letters."
      * )
      * @Assert\Regex(pattern="/^[a-z0-9]+$/i", message="Nickname can contain only letters and digits.")
-     * @Assert\Type(type="string", message="{{value}} is not a string.")
+     * @Assert\Type(type="string", message="{{ value }} is not a string.")
      * @Assert\NotNull(message="Nickname is required.")
      *
      * @JMS\Type("string")
      */
     private $nickname;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *      targetEntity="Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber",
+     *      mappedBy="owner",
+     *      cascade={"persist"}
+     * )
+     *
+     * @Assert\Valid()
+     *
+     * @JMS\Type("ArrayCollection<Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber>")
+     */
+    private $phoneNumbers;
+
+    /**
+     * Init
+     */
+    public function __construct()
+    {
+        $this->phoneNumbers = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -101,7 +131,7 @@ class User
 
     /**
      * @param int $id
-     * @return User
+     * @return $this
      */
     public function setId($id)
     {
@@ -119,7 +149,7 @@ class User
 
     /**
      * @param string $firstName
-     * @return User
+     * @return $this
      */
     public function setFirstName($firstName)
     {
@@ -137,7 +167,7 @@ class User
 
     /**
      * @param string $lastName
-     * @return User
+     * @return $this
      */
     public function setLastName($lastName)
     {
@@ -155,11 +185,30 @@ class User
 
     /**
      * @param string $nickname
-     * @return User
+     * @return $this
      */
     public function setNickname($nickname)
     {
         $this->nickname = $nickname;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPhoneNumbers()
+    {
+        return $this->phoneNumbers;
+    }
+
+    /**
+     * @param PhoneNumber $phoneNumber
+     * @return $this
+     */
+    public function addPhoneNumber(PhoneNumber $phoneNumber)
+    {
+        $this->phoneNumbers->add($phoneNumber);
+        $phoneNumber->setOwner($this);
         return $this;
     }
 }

@@ -1,4 +1,49 @@
 services:
-#    arkon_phone_book.example:
-#        class: Arkon\Bundle\PhoneBookBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    # Controllers
+    arkon.phonebook.add_number_controller:
+        class: Arkon\Bundle\PhoneBookBundle\Controller\AddPhoneNumberController
+        arguments:
+            - @arkon.phonebook.add_number
+            - @form.factory
+            - @router
+
+    arkon.phonebook.get_user_numbers_controller:
+        class: Arkon\Bundle\PhoneBookBundle\Controller\GetUserNumbersController
+        arguments:
+            - @arkon.phonebook.get_user_numbers
+
+    arkon.phonebook.get_user_number_controller:
+        class: Arkon\Bundle\PhoneBookBundle\Controller\GetUserNumberController
+        arguments:
+            - @arkon.phonebook.get_user_number
+
+    # Services
+    arkon.phonebook.phone_number_repository_db:
+        class: Arkon\Bundle\PhoneBookBundle\Repository\DbPhoneNumberRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - ArkonPhoneBookBundle:PhoneNumber
+
+    # Use cases
+    arkon.phonebook.add_number:
+        class: Arkon\Bundle\PhoneBookBundle\UseCase\AddNumberToUser
+        arguments:
+            - @arkon.user.user_repository_db
+            - @validator
+
+    arkon.phonebook.get_user_numbers:
+        class: Arkon\Bundle\PhoneBookBundle\UseCase\GetUserNumbers
+        arguments:
+            - @arkon.phonebook.phone_number_repository_db
+
+    arkon.phonebook.get_user_number:
+        class: Arkon\Bundle\PhoneBookBundle\UseCase\GetUserNumber
+        arguments:
+            - @arkon.phonebook.phone_number_repository_db
+
+    arkon.phonebook.edit_number:
+        class: Arkon\Bundle\PhoneBookBundle\UseCase\EditPhoneNumber
+        arguments:
+            - @arkon.phonebook.phone_number_repository_db
+            - @validator

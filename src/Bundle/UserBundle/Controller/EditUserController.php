@@ -58,7 +58,7 @@ class EditUserController
             return new View($form, 400);
         }
 
-        $this->useCase->editUser($user);
+        $this->useCase->editUser($user, false);
 
         return new View(
             $user,
