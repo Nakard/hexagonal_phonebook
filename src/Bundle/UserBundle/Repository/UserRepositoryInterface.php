@@ -9,7 +9,7 @@ use Arkon\Bundle\UserBundle\Search\UserSearch;
  * Interface UserRepositoryInterface
  * @package Arkon\Bundle\UserBundle\Repository
  */
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends RepositoryInterface
 {
     /**
      * @param UserSearch|null $search

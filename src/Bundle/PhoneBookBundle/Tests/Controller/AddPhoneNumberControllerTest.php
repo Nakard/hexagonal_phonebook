@@ -1,22 +1,23 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Tests\Controller;
+namespace Arkon\Bundle\PhoneBookBundle\Tests\Controller;
 
-use Arkon\Bundle\UserBundle\Controller\CreateUserController;
+use Arkon\Bundle\PhoneBookBundle\Controller\AddPhoneNumberController;
+use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
+use Arkon\Bundle\PhoneBookBundle\UseCase\AddNumberToUser;
 use Arkon\Bundle\UserBundle\Entity\User;
-use Arkon\Bundle\UserBundle\UseCase\CreateUser;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Class CreateUserControllerTest
- * @package Arkon\Bundle\UserBundle\Tests\Controller
+ * Class AddPhoneNumberControllerTest
+ * @package Arkon\Bundle\PhoneBookBundle\Tests\Controller
  */
-class CreateUserControllerTest extends \PHPUnit_Framework_TestCase
+class AddPhoneNumberControllerTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var CreateUserController */
+    /** @var AddPhoneNumberController */
     private $controller;
 
     /** @var Form\FormInterface|\PHPUnit_Framework_MockObject_MockObject */
@@ -25,6 +26,9 @@ class CreateUserControllerTest extends \PHPUnit_Framework_TestCase
     /** @var RouterInterface|\PHPUnit_Framework_MockObject_MockObject */
     private $routerMock;
 
+    /** @var AddNumberToUser|\PHPUnit_Framework_MockObject_MockObject */
+    private $useCaseMock;
+
     protected function setUp()
     {
         parent::setUp();
@@ -32,15 +36,15 @@ class CreateUserControllerTest extends \PHPUnit_Framework_TestCase
         $this->formMock = $this->getMockBuilder(Form\FormInterface::class)->getMock();
         /** @var Form\FormFactoryInterface|\PHPUnit_Framework_MockObject_MockObject $formFactoryMock */
         $formFactoryMock = $this->getMockBuilder(Form\FormFactoryInterface::class)->getMock();
-        $formFactoryMock->expects($this->any())
+        $formFactoryMock->expects($this->once())
             ->method('createNamed')
             ->will($this->returnValue($this->formMock));
 
         $this->routerMock = $this->getMockBuilder(RouterInterface::class)->getMock();
-        /** @var CreateUser|\PHPUnit_Framework_MockObject_MockObject $useCaseMock */
-        $useCaseMock = $this->getMockBuilder(CreateUser::class)->disableOriginalConstructor()->getMock();
 
-        $this->controller = new CreateUserController($useCaseMock, $formFactoryMock, $this->routerMock);
+        $this->useCaseMock = $this->getMockBuilder(AddNumberToUser::class)->disableOriginalConstructor()->getMock();
+
+        $this->controller = new AddPhoneNumberController($this->useCaseMock, $formFactoryMock, $this->routerMock);
     }
 
     public function testCreateUserFormDataInvalidWillReturn400Response()
@@ -53,24 +57,28 @@ class CreateUserControllerTest extends \PHPUnit_Framework_TestCase
 
         $expectedResult = new View($this->formMock, 400);
 
-        $this->assertEquals($expectedResult, $this->controller->createUserAction($request));
+        $this->assertEquals($expectedResult, $this->controller->addNumberAction($this->createExampleUser(), $request));
     }
 
     public function testCreateUserFormDataValidWillReturn201Response()
     {
         $request = $this->createExampleRequest();
+        $user = $this->createExampleUser();
 
         $this->formMock->expects($this->once())
             ->method('isValid')
             ->will($this->returnValue(true));
 
+        $this->useCaseMock->expects($this->once())
+            ->method('addNumberToUser');
+
         $this->routerMock->expects($this->once())
             ->method('generate')
             ->will($this->returnValue('http://example.com'));
 
-        $view = $this->controller->createUserAction($request);
+        $view = $this->controller->addNumberAction($user, $request);
 
-        $this->assertInstanceOf(User::class, $view->getData());
+        $this->assertInstanceOf(PhoneNumber::class, $view->getData());
         $this->assertSame(201, $view->getStatusCode());
         $this->assertSame(['http://example.com'], $view->getHeaders()['location']);
     }
@@ -81,5 +89,13 @@ class CreateUserControllerTest extends \PHPUnit_Framework_TestCase
     private function createExampleRequest()
     {
         return new Request();
+    }
+
+    /**
+     * @return User
+     */
+    private function createExampleUser()
+    {
+        return new User();
     }
 }

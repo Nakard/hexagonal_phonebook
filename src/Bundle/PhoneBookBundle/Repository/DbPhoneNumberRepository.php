@@ -4,13 +4,13 @@ namespace Arkon\Bundle\PhoneBookBundle\Repository;
 
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\UserBundle\Entity\User;
-use Doctrine\ORM\EntityRepository;
+use Arkon\Bundle\UserBundle\Repository\AbstractDbRepository;
 
 /**
  * Class DbPhoneNumberRepository
  * @package Arkon\Bundle\PhoneBookBundle\Repository
  */
-class DbPhoneNumberRepository extends EntityRepository implements PhoneNumberRepositoryInterface
+class DbPhoneNumberRepository extends AbstractDbRepository implements PhoneNumberRepositoryInterface
 {
     /**
      * @inheritDoc

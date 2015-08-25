@@ -25,11 +25,23 @@ services:
         arguments:
             - ArkonPhoneBookBundle:PhoneNumber
 
+    # Forms
+    arkon.user.add_phone_number_form:
+        class: Arkon\Bundle\PhoneBookBundle\Form\AddPhoneNumberType
+        tags:
+            - { name: form.type, alias: phone_number_add }
+
+    arkon.user.edit_phone_number_form:
+        class: Arkon\Bundle\PhoneBookBundle\Form\EditPhoneNumberType
+        tags:
+            - { name: form.type, alias: phone_number_edit }
+
     # Use cases
     arkon.phonebook.add_number:
         class: Arkon\Bundle\PhoneBookBundle\UseCase\AddNumberToUser
         arguments:
             - @arkon.user.user_repository_db
+            - @arkon.phonebook.phone_number_repository_db
             - @validator
 
     arkon.phonebook.get_user_numbers:

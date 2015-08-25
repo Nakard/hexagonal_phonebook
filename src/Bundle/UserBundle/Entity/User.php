@@ -207,7 +207,6 @@ class User
     public function addPhoneNumber(PhoneNumber $phoneNumber)
     {
         $this->phoneNumbers->add($phoneNumber);
-        $phoneNumber->setOwner($this);
         return $this;
     }
 }

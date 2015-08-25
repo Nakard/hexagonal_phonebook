@@ -3,7 +3,6 @@
 namespace Arkon\Bundle\UserBundle\Controller;
 
 use Arkon\Bundle\UserBundle\Entity\User;
-use Arkon\Bundle\UserBundle\Form\SearchUsersType;
 use Arkon\Bundle\UserBundle\UseCase\ListUsers;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
@@ -47,7 +46,7 @@ class ListUsersController
      */
     private function processForm(Request $request)
     {
-        $form = $this->formFactory->create(new SearchUsersType());
+        $form = $this->formFactory->createNamed('', 'user_search');
         $form->handleRequest($request);
 
         if (!$form->isEmpty() && !$form->isValid()) {

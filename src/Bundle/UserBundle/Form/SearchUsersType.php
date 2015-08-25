@@ -44,6 +44,6 @@ class SearchUsersType extends AbstractType
      */
     public function getName()
     {
-        return '';
+        return 'user_search';
     }
 }

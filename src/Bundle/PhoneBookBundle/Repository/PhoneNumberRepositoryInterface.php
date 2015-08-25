@@ -4,12 +4,13 @@ namespace Arkon\Bundle\PhoneBookBundle\Repository;
 
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\UserBundle\Entity\User;
+use Arkon\Bundle\UserBundle\Repository\RepositoryInterface;
 
 /**
  * Interface PhoneNumberRepositoryInterface
  * @package Arkon\Bundle\PhoneBookBundle\Repository
  */
-interface PhoneNumberRepositoryInterface
+interface PhoneNumberRepositoryInterface extends RepositoryInterface
 {
     /**
      * @param array $criteria

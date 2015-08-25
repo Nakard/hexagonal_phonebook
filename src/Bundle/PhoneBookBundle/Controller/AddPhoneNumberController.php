@@ -3,7 +3,6 @@
 namespace Arkon\Bundle\PhoneBookBundle\Controller;
 
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
-use Arkon\Bundle\PhoneBookBundle\Form\AddPhoneNumberType;
 use Arkon\Bundle\PhoneBookBundle\UseCase\AddNumberToUser;
 use Arkon\Bundle\UserBundle\Entity\User;
 use FOS\RestBundle\View\View;
@@ -62,7 +61,7 @@ class AddPhoneNumberController
     private function processForm(PhoneNumber $number, User $user, Request $request)
     {
         $number->setOwner($user);
-        $form = $this->formFactory->create(new AddPhoneNumberType(), $number);
+        $form = $this->formFactory->createNamed('phoneNumber', 'phone_number_add', $number);
         $form->handleRequest($request);
 
         if (!$form->isValid()) {
@@ -73,7 +72,14 @@ class AddPhoneNumberController
 
         return (new View(
             $number,
-            201 //TODO add Location header
+            201,
+            [
+                'Location' => $this->router->generate(
+                    'arkon_phonebook_get_user_number',
+                    ['id' => $user->getId(), 'numberId' => $number->getId()],
+                    true
+                )
+            ]
         ));
     }
 }

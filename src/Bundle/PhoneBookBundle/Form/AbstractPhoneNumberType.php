@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * Class AbstractPhoneNumberType
  * @package Arkon\Bundle\PhoneBookBundle\Form
  */
-class AbstractPhoneNumberType extends AbstractType
+abstract class AbstractPhoneNumberType extends AbstractType
 {
     /**
      * @inheritDoc
@@ -34,13 +34,5 @@ class AbstractPhoneNumberType extends AbstractType
             'csrf_protection' => false,
             'data_class' => PhoneNumber::class
         ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'phoneNumber';
     }
 }

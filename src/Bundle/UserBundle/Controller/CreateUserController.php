@@ -3,7 +3,6 @@
 namespace Arkon\Bundle\UserBundle\Controller;
 
 use Arkon\Bundle\UserBundle\Entity\User;
-use Arkon\Bundle\UserBundle\Form\CreateUserType;
 use Arkon\Bundle\UserBundle\UseCase\CreateUser;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -53,7 +52,7 @@ class CreateUserController
      */
     private function processForm(User $user, Request $request)
     {
-        $form = $this->formFactory->create(new CreateUserType(), $user);
+        $form = $this->formFactory->createNamed('user', 'user_create', $user);
         $form->handleRequest($request);
 
         if (!$form->isValid()) {

@@ -41,6 +41,7 @@ class EditPhoneNumber
         }
 
         $this->repository->save($phoneNumber);
+        $this->repository->synchronize();
     }
 
     /**

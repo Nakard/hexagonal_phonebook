@@ -8,6 +8,7 @@
             "SymfonyStandard\\": "app/SymfonyStandard/"
         }
     },
+    "description": "Small demo application with REST API serving as a simple phone book",
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.6",

@@ -33,7 +33,7 @@ services:
     arkon.user.edit_user_form:
         class: Arkon\Bundle\UserBundle\Form\EditUserType
         tags:
-            - { name: form.type, alias: user_edit}
+            - { name: form.type, alias: user_edit }
 
     arkon.user.create_user_form:
         class: Arkon\Bundle\UserBundle\Form\CreateUserType

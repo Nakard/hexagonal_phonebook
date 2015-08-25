@@ -5,14 +5,13 @@ namespace Arkon\Bundle\UserBundle\Repository;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\Search\UserSearch;
 use Doctrine\Common\Collections;
-use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 
 /**
  * Class DbUserRepository
  * @package Arkon\Bundle\UserBundle\Repository
  */
-class DbUserRepository extends EntityRepository implements UserRepositoryInterface
+class DbUserRepository extends AbstractDbRepository implements UserRepositoryInterface
 {
     /**
      * {@inheritdoc}

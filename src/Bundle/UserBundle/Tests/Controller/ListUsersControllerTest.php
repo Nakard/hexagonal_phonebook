@@ -34,7 +34,7 @@ class ListUsersControllerTest extends \PHPUnit_Framework_TestCase
         $this->formMock = $this->getMockBuilder(FormInterface::class)->getMock();
         /** @var FormFactoryInterface|\PHPUnit_Framework_MockObject_MockObject $formFactoryMock */
         $formFactoryMock = $this->getMockBuilder(FormFactoryInterface::class)->getMock();
-        $formFactoryMock->expects($this->any())->method('create')->will($this->returnValue($this->formMock));
+        $formFactoryMock->expects($this->any())->method('createNamed')->will($this->returnValue($this->formMock));
 
         $this->useCaseMock->expects($this->any())
             ->method('listUsers')

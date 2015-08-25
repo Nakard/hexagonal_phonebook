@@ -52,7 +52,7 @@ class EditUserControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResult, $this->controller->editUserAction($user, $request));
     }
 
-    public function testCreateUserFormDataValidWillReturn204Response()
+    public function testCreateUserFormDataValidWillReturn200Response()
     {
         $request = $this->createExampleRequest();
         $user = $this->createExampleUser();
@@ -64,7 +64,7 @@ class EditUserControllerTest extends \PHPUnit_Framework_TestCase
         $view = $this->controller->editUserAction($user, $request);
 
         $this->assertInstanceOf(User::class, $view->getData());
-        $this->assertSame(204, $view->getStatusCode());
+        $this->assertSame(200, $view->getStatusCode());
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace Arkon\Bundle\PhoneBookBundle\Controller;
 
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
-use Arkon\Bundle\PhoneBookBundle\Form\EditPhoneNumberType;
 use Arkon\Bundle\PhoneBookBundle\UseCase\EditPhoneNumber;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -48,7 +47,7 @@ class EditPhoneNumberController
      */
     private function processForm(PhoneNumber $phoneNumber, Request $request)
     {
-        $form = $this->formFactory->create(new EditPhoneNumberType(), $phoneNumber);
+        $form = $this->formFactory->createNamed('phoneNumber', 'phone_number_edit', $phoneNumber);
         $form->handleRequest($request);
 
         if (!$form->isValid()) {
@@ -56,5 +55,7 @@ class EditPhoneNumberController
         }
 
         $this->useCase->editPhoneNumber($phoneNumber, false);
+
+        return new View($phoneNumber, 200);
     }
 }

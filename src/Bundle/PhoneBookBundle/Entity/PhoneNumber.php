@@ -46,7 +46,7 @@ class PhoneNumber
      * @Assert\Type(type="integer", message="{{ value }} is not a valid number.")
      * @Assert\NotNull(message="Phone number is required.")
      *
-     * @JMS\Type("string")
+     * @JMS\Type("integer")
      */
     private $number;
 
@@ -79,7 +79,7 @@ class PhoneNumber
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getNumber()
     {
@@ -87,7 +87,7 @@ class PhoneNumber
     }
 
     /**
-     * @param string $number
+     * @param int $number
      * @return $this
      */
     public function setNumber($number)

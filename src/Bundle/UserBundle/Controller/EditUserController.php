@@ -61,7 +61,7 @@ class EditUserController
 
         return new View(
             $user,
-            204
+            200
         );
     }
 }

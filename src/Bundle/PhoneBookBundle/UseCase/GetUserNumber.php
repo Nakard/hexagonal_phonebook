@@ -12,6 +12,7 @@ use Arkon\Bundle\UserBundle\Entity\User;
  */
 class GetUserNumber
 {
+    /** @var PhoneNumberRepositoryInterface */
     private $repository;
 
     /**

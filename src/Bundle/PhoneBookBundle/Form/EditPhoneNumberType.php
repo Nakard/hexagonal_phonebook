@@ -21,4 +21,12 @@ class EditPhoneNumberType extends AbstractPhoneNumberType
             'method' => 'PUT'
         ]);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getName()
+    {
+        return 'phone_number_edit';
+    }
 }

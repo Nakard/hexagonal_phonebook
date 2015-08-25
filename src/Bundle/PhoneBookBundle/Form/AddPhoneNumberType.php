@@ -21,4 +21,12 @@ class AddPhoneNumberType extends AbstractPhoneNumberType
             'method' => 'POST'
         ]);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getName()
+    {
+        return 'phone_number_add';
+    }
 }
