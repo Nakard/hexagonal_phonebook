@@ -1,6 +1,7 @@
 <?php
 
 namespace Arkon\Bundle\UserBundle\Tests\UseCase;
+
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\Exception\EditUserException;
 use Arkon\Bundle\UserBundle\Exception\NotExistingUserException;

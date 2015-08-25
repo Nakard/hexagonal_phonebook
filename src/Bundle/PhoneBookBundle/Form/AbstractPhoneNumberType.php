@@ -5,7 +5,7 @@ namespace Arkon\Bundle\PhoneBookBundle\Form;
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AbstractPhoneNumberType
@@ -26,9 +26,9 @@ abstract class AbstractPhoneNumberType extends AbstractType
     /**
      * @inheritDoc
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults([
             'csrf_protection' => false,

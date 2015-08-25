@@ -2,7 +2,7 @@
 
 namespace Arkon\Bundle\UserBundle\Form;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class EditUserType
@@ -11,11 +11,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class EditUserType extends AbstractUserType
 {
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults([
             'method' => 'PUT'

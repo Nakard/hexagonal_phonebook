@@ -1,8 +1,8 @@
 <?php
 
 namespace Arkon\Bundle\UserBundle\Search;
-use Doctrine\Common\Collections\Expr\Comparison;
 
+use Doctrine\Common\Collections\Expr\Comparison;
 
 /**
  * Class UserSearch
