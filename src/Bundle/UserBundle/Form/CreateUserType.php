@@ -21,4 +21,12 @@ class CreateUserType extends AbstractUserType
             'method' => 'POST'
         ]);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getName()
+    {
+        return 'user_create';
+    }
 }

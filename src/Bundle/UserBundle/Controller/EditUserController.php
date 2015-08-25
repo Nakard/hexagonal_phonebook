@@ -3,7 +3,6 @@
 namespace Arkon\Bundle\UserBundle\Controller;
 
 use Arkon\Bundle\UserBundle\Entity\User;
-use Arkon\Bundle\UserBundle\Form\EditUserType;
 use Arkon\Bundle\UserBundle\UseCase\EditUser;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -51,7 +50,7 @@ class EditUserController
      */
     private function processForm(User $user, Request $request)
     {
-        $form = $this->formFactory->create(new EditUserType(), $user);
+        $form = $this->formFactory->createNamed('user', 'user_edit', $user);
         $form->handleRequest($request);
 
         if (!$form->isValid()) {

@@ -18,10 +18,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table("users", indexes={@ORM\Index(name="nickname_idx", columns={"nickname"})})
  *
  * @UniqueEntity(
- *      fields={"nickname"},
- *      repositoryMethod="findByNickname",
- *      message="Nickname is already used.",
- *      groups={"unique"}
+ *      fields={"nickname", "id"},
+ *      repositoryMethod="checkForUniqueNickname",
+ *      message="Nickname is already used."
  * )
  *
  * @Hateoas\Relation("self", href="expr('/users/' ~ object.getId())")
@@ -69,7 +68,8 @@ class User
      *      min="3",
      *      max="50",
      *      minMessage="Last name can't be shorter than 3 letters.",
-     *      maxMessage="Last name can't be longer than 50 letters."
+     *      maxMessage="Last name can't be longer than 50 letters.",
+     *      groups={"edit"}
      * )
      * @Assert\Regex(pattern="/^[a-z]+$/i", message="Last name can only contain letters.")
      * @Assert\Type(type="string", message="{{ value }} is not a string.")
@@ -88,7 +88,8 @@ class User
      *      min="5",
      *      max="100",
      *      minMessage="Nickname can't be shorter than 5 letters.",
-     *      maxMessage="Nickname can't be longer than 100 letters."
+     *      maxMessage="Nickname can't be longer than 100 letters.",
+     *      groups={"edit"}
      * )
      * @Assert\Regex(pattern="/^[a-z0-9]+$/i", message="Nickname can contain only letters and digits.")
      * @Assert\Type(type="string", message="{{ value }} is not a string.")
@@ -106,8 +107,6 @@ class User
      *      mappedBy="owner",
      *      cascade={"persist"}
      * )
-     *
-     * @Assert\Valid()
      *
      * @JMS\Type("ArrayCollection<Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber>")
      */

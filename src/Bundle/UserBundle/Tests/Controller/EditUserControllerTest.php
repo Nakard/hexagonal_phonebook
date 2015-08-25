@@ -29,7 +29,7 @@ class EditUserControllerTest extends \PHPUnit_Framework_TestCase
         /** @var Form\FormFactoryInterface|\PHPUnit_Framework_MockObject_MockObject $formFactoryMock */
         $formFactoryMock = $this->getMockBuilder(Form\FormFactoryInterface::class)->getMock();
         $formFactoryMock->expects($this->any())
-            ->method('create')
+            ->method('createNamed')
             ->will($this->returnValue($this->formMock));
 
         /** @var EditUser|\PHPUnit_Framework_MockObject_MockObject $useCaseMock */

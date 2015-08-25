@@ -34,15 +34,7 @@ abstract class AbstractUserType extends AbstractType
 
         $resolver->setDefaults([
             'data_class' => User::class,
-            'csrf_protection' => false,
+            'csrf_protection' => false
         ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'user';
     }
 }

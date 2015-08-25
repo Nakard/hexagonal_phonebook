@@ -36,20 +36,22 @@ class DbUserRepository extends EntityRepository implements UserRepositoryInterfa
      */
     public function nicknameExists($nickname)
     {
-        return !empty($this->findByNickname(['nickname' => $nickname]));
+        return !empty($this->checkForUniqueNickname(['nickname' => $nickname]));
     }
 
     /**
      * @param array $criteria
      * @return array
      */
-    public function findByNickname(array $criteria)
+    public function checkForUniqueNickname(array $criteria)
     {
         return $this->createQueryBuilder('u')
             ->select('u.id, u.nickname')
             ->where('u.nickname = :nickname')
+            ->andWhere('u.id != :id')
             ->setMaxResults(1)
-            ->setParameter('nickname', $criteria['nickname'])
+            ->setParameter('nickname', $criteria['nickname'], \PDO::PARAM_STR)
+            ->setParameter('id', $criteria['id'], \PDO::PARAM_INT)
             ->getQuery()
             ->getResult();
     }

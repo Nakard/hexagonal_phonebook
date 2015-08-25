@@ -29,6 +29,22 @@ services:
         arguments:
             - @arkon.user.remove_user
 
+    # Forms:
+    arkon.user.edit_user_form:
+        class: Arkon\Bundle\UserBundle\Form\EditUserType
+        tags:
+            - { name: form.type, alias: user_edit}
+
+    arkon.user.create_user_form:
+        class: Arkon\Bundle\UserBundle\Form\CreateUserType
+        tags:
+            - { name: form.type, alias: user_create }
+
+    arkon.user.search_users_form:
+        class: Arkon\Bundle\UserBundle\Form\SearchUsersType
+        tags:
+            - { name: form.type, alias: user_search }
+
     # Services
     arkon.user.user_repository_db:
         class: Arkon\Bundle\UserBundle\Repository\DbUserRepository
