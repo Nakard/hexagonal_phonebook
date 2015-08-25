@@ -7,7 +7,6 @@ use Arkon\Bundle\UserBundle\UseCase\EditUser;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\RouterInterface;
 use FOS\RestBundle\View\View;
 
 /**
