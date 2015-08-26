@@ -1,12 +1,12 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Tests\Functional\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Functional\Controller;
 
-use Arkon\Bundle\UserBundle\Tests\Functional\ApiTestCase;
+use Arkon\Bundle\ApiBundle\Tests\Functional\ApiTestCase;
 
 /**
  * Class UserControllerTestCase
- * @package Arkon\Bundle\UserBundle\Tests\Functional\Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Functional\Controller
  */
 abstract class UserControllerTestCase extends ApiTestCase
 {

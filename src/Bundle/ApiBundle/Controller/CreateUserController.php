@@ -1,6 +1,6 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Controller;
+namespace Arkon\Bundle\ApiBundle\Controller;
 
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\CreateUser;
@@ -11,7 +11,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class CreateUserController
- * @package Arkon\Bundle\UserBundle\Controller
+ * @package Arkon\Bundle\ApiBundle\Controller
  */
 class CreateUserController
 {

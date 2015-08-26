@@ -1,34 +1,4 @@
 services:
-    # Controllers
-    arkon.user.list_users_controller:
-        class: Arkon\Bundle\UserBundle\Controller\ListUsersController
-        arguments:
-            - @arkon.user.list_users
-            - @form.factory
-
-    arkon.user.get_user_controller:
-        class: Arkon\Bundle\UserBundle\Controller\GetUserController
-        arguments:
-            - @arkon.user.get_user
-
-    arkon.user.create_user_controller:
-        class: Arkon\Bundle\UserBundle\Controller\CreateUserController
-        arguments:
-            - @arkon.user.create_user
-            - @form.factory
-            - @router
-
-    arkon.user.edit_user_controller:
-        class: Arkon\Bundle\UserBundle\Controller\EditUserController
-        arguments:
-            - @arkon.user.edit_user
-            - @form.factory
-
-    arkon.user.remove_user_controller:
-        class: Arkon\Bundle\UserBundle\Controller\RemoveUserController
-        arguments:
-            - @arkon.user.remove_user
-
     # Forms:
     arkon.user.edit_user_form:
         class: Arkon\Bundle\UserBundle\Form\EditUserType

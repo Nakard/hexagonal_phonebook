@@ -1,6 +1,6 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Controller;
+namespace Arkon\Bundle\ApiBundle\Controller;
 
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\RemoveUser;
@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Class RemoveUserController
- * @package Arkon\Bundle\UserBundle\Controller
+ * @package Arkon\Bundle\ApiBundle\Controller
  */
 class RemoveUserController
 {

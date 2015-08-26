@@ -1,8 +1,8 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Tests\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Controller;
 
-use Arkon\Bundle\UserBundle\Controller\EditUserController;
+use Arkon\Bundle\ApiBundle\Controller\EditUserController;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\EditUser;
 use FOS\RestBundle\View\View;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class EditUserControllerTest
- * @package Arkon\Bundle\UserBundle\Tests\Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Controller
  */
 class EditUserControllerTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Tests\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Controller;
 
-use Arkon\Bundle\UserBundle\Controller\ListUsersController;
+use Arkon\Bundle\ApiBundle\Controller\ListUsersController;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\ListUsers;
 use FOS\RestBundle\View\View;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ListUsersControllerTest
- * @package Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Controller
  */
 class ListUsersControllerTest extends \PHPUnit_Framework_TestCase
 {

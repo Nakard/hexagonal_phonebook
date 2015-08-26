@@ -1,12 +1,12 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Tests\Functional\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Functional\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class ListUsersControllerTest
- * @package Arkon\Bundle\UserBundle\Tests\Functional\Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Functional\Controller
  */
 class ListUsersControllerTest extends UserControllerTestCase
 {

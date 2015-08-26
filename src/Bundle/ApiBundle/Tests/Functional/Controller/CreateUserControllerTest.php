@@ -1,10 +1,10 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Tests\Functional\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Functional\Controller;
 
 /**
  * Class CreateUserControllerTest
- * @package Arkon\Bundle\UserBundle\Tests\Functional\Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Functional\Controller
  */
 class CreateUserControllerTest extends UserControllerTestCase
 {

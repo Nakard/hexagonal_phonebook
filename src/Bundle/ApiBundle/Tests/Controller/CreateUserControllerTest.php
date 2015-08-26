@@ -1,8 +1,8 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Tests\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Controller;
 
-use Arkon\Bundle\UserBundle\Controller\CreateUserController;
+use Arkon\Bundle\ApiBundle\Controller\CreateUserController;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\CreateUser;
 use FOS\RestBundle\View\View;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class CreateUserControllerTest
- * @package Arkon\Bundle\UserBundle\Tests\Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Controller
  */
 class CreateUserControllerTest extends \PHPUnit_Framework_TestCase
 {

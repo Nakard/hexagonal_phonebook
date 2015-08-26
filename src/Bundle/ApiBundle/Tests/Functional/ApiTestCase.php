@@ -1,9 +1,9 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Tests\Functional;
+namespace Arkon\Bundle\ApiBundle\Tests\Functional;
 
-use Arkon\Bundle\PhoneBookBundle\Tests\DataFixtures\LoadPhoneNumberData;
 use Arkon\Bundle\UserBundle\Tests\DataFixtures\LoadUserData;
+use Arkon\Bundle\PhoneBookBundle\Tests\DataFixtures\LoadPhoneNumberData;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 /**
  * Class ApiTestCase
- * @package Arkon\Bundle\UserBundle\Tests\Functional
+ * @package Arkon\Bundle\ApiBundle\Tests\Functional
  */
 class ApiTestCase extends WebTestCase
 {

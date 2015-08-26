@@ -1,14 +1,14 @@
 <?php
 
-namespace Arkon\Bundle\UserBundle\Tests\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Controller;
 
-use Arkon\Bundle\UserBundle\Controller\RemoveUserController;
+use Arkon\Bundle\ApiBundle\Controller\RemoveUserController;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\RemoveUser;
 
 /**
  * Class RemoveUserControllerTest
- * @package Arkon\Bundle\UserBundle\Tests\Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Controller
  */
 class RemoveUserControllerTest extends \PHPUnit_Framework_TestCase
 {

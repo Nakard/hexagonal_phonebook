@@ -3,11 +3,6 @@ arkon_api:
     prefix:   /
     defaults: { _format: 'json'}
 
-arkon_user:
-    resource: "@ArkonUserBundle/Resources/config/routing.yml"
-    prefix:   /
-    defaults: { _format: 'json' }
-
 arkon_phone_book:
     resource: "@ArkonPhoneBookBundle/Resources/config/routing.yml"
     prefix:   /
