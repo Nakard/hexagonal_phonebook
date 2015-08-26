@@ -1,6 +1,6 @@
 <?php
 
-namespace Arkon\Bundle\ApiBundle\Controller;
+namespace Arkon\Bundle\ApiBundle\Controller\User;
 
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\GetUser;
@@ -9,7 +9,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * Class GetUserController
- * @package Arkon\Bundle\ApiBundle\Controller
+ * @package Arkon\Bundle\ApiBundle\Controller\User
  */
 class GetUserController
 {

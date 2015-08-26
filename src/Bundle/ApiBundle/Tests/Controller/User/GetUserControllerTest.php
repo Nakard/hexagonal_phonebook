@@ -1,15 +1,15 @@
 <?php
 
-namespace Arkon\Bundle\ApiBundle\Tests\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Controller\User;
 
-use Arkon\Bundle\ApiBundle\Controller\GetUserController;
+use Arkon\Bundle\ApiBundle\Controller\User\GetUserController;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\GetUser;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class GetUserControllerTest
- * @package Arkon\Bundle\ApiBundle\Tests\Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Controller\User
  */
 class GetUserControllerTest extends \PHPUnit_Framework_TestCase
 {

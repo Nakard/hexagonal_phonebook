@@ -1,6 +1,6 @@
 <?php
 
-namespace Arkon\Bundle\PhoneBookBundle\Controller;
+namespace Arkon\Bundle\ApiBundle\Controller\PhoneNumber;
 
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\UseCase\GetUserNumber;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class GetUserNumberController
- * @package Arkon\Bundle\PhoneBookBundle\Controller
+ * @package Arkon\Bundle\ApiBundle\Controller\PhoneNumber
  */
 class GetUserNumberController
 {

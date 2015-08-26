@@ -1,30 +1,54 @@
 services:
     # Controllers
     arkon.user.list_users_controller:
-        class: Arkon\Bundle\ApiBundle\Controller\ListUsersController
+        class: Arkon\Bundle\ApiBundle\Controller\User\ListUsersController
         arguments:
             - @arkon.user.list_users
             - @form.factory
 
     arkon.user.get_user_controller:
-        class: Arkon\Bundle\ApiBundle\Controller\GetUserController
+        class: Arkon\Bundle\ApiBundle\Controller\User\GetUserController
         arguments:
             - @arkon.user.get_user
 
     arkon.user.create_user_controller:
-        class: Arkon\Bundle\ApiBundle\Controller\CreateUserController
+        class: Arkon\Bundle\ApiBundle\Controller\User\CreateUserController
         arguments:
             - @arkon.user.create_user
             - @form.factory
             - @router
 
     arkon.user.edit_user_controller:
-        class: Arkon\Bundle\ApiBundle\Controller\EditUserController
+        class: Arkon\Bundle\ApiBundle\Controller\User\EditUserController
         arguments:
             - @arkon.user.edit_user
             - @form.factory
 
     arkon.user.remove_user_controller:
-        class: Arkon\Bundle\ApiBundle\Controller\RemoveUserController
+        class: Arkon\Bundle\ApiBundle\Controller\User\RemoveUserController
         arguments:
             - @arkon.user.remove_user
+
+    # Controllers
+    arkon.phonebook.add_number_controller:
+        class: Arkon\Bundle\ApiBundle\Controller\PhoneNumber\AddPhoneNumberController
+        arguments:
+            - @arkon.phonebook.add_number
+            - @form.factory
+            - @router
+
+    arkon.phonebook.get_user_numbers_controller:
+        class: Arkon\Bundle\ApiBundle\Controller\PhoneNumber\GetUserNumbersController
+        arguments:
+            - @arkon.phonebook.get_user_numbers
+
+    arkon.phonebook.get_user_number_controller:
+        class: Arkon\Bundle\ApiBundle\Controller\PhoneNumber\GetUserNumberController
+        arguments:
+            - @arkon.phonebook.get_user_number
+
+    arkon.phonebook.edit_number_controller:
+        class: Arkon\Bundle\ApiBundle\Controller\PhoneNumber\EditPhoneNumberController
+        arguments:
+            - @arkon.phonebook.edit_number
+            - @form.factory

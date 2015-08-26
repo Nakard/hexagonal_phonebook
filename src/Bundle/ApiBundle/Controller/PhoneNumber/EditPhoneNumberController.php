@@ -1,6 +1,6 @@
 <?php
 
-namespace Arkon\Bundle\PhoneBookBundle\Controller;
+namespace Arkon\Bundle\ApiBundle\Controller\PhoneNumber;
 
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\UseCase\EditPhoneNumber;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class EditPhoneNumberController
- * @package Arkon\Bundle\PhoneBookBundle\Controller
+ * @package Arkon\Bundle\ApiBundle\Controller\PhoneNumber
  */
 class EditPhoneNumberController
 {

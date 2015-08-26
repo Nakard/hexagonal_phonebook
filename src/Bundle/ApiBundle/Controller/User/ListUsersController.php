@@ -1,6 +1,6 @@
 <?php
 
-namespace Arkon\Bundle\ApiBundle\Controller;
+namespace Arkon\Bundle\ApiBundle\Controller\User;
 
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\ListUsers;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ListUsersController
- * @package Arkon\Bundle\ApiBundle\Controller
+ * @package Arkon\Bundle\ApiBundle\Controller\User
  */
 class ListUsersController
 {

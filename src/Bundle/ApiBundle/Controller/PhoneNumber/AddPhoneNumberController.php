@@ -1,6 +1,6 @@
 <?php
 
-namespace Arkon\Bundle\PhoneBookBundle\Controller;
+namespace Arkon\Bundle\ApiBundle\Controller\PhoneNumber;
 
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\UseCase\AddNumberToUser;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class AddPhoneNumberController
- * @package Arkon\Bundle\PhoneBookBundle\Controller
+ * @package Arkon\Bundle\ApiBundle\Controller\PhoneNumber
  */
 class AddPhoneNumberController
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Arkon\Bundle\PhoneBookBundle\Tests\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Controller\PhoneNumber;
 
-use Arkon\Bundle\PhoneBookBundle\Controller\EditPhoneNumberController;
+use Arkon\Bundle\ApiBundle\Controller\PhoneNumber\EditPhoneNumberController;
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\UseCase\EditPhoneNumber;
 use FOS\RestBundle\View\View;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class EditPhoneNumberControllerTest
- * @package Arkon\Bundle\PhoneBookBundle\Tests\Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Controller\PhoneNumber
  */
 class EditPhoneNumberControllerTest extends \PHPUnit_Framework_TestCase
 {

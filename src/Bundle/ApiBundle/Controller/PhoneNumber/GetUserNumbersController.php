@@ -1,6 +1,6 @@
 <?php
 
-namespace Arkon\Bundle\PhoneBookBundle\Controller;
+namespace Arkon\Bundle\ApiBundle\Controller\PhoneNumber;
 
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\UseCase\GetUserNumbers;
@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Class GetUserNumbersController
- * @package Arkon\Bundle\PhoneBookBundle\Controller
+ * @package Arkon\Bundle\ApiBundle\Controller\PhoneNumber
  */
 class GetUserNumbersController
 {

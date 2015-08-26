@@ -1,25 +1,29 @@
 <?php
 
-namespace Arkon\Bundle\ApiBundle\Tests\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Controller\User;
 
-use Arkon\Bundle\ApiBundle\Controller\EditUserController;
+use Arkon\Bundle\ApiBundle\Controller\User\CreateUserController;
 use Arkon\Bundle\UserBundle\Entity\User;
-use Arkon\Bundle\UserBundle\UseCase\EditUser;
+use Arkon\Bundle\UserBundle\UseCase\CreateUser;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Form;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Class EditUserControllerTest
- * @package Arkon\Bundle\ApiBundle\Tests\Controller
+ * Class CreateUserControllerTest
+ * @package Arkon\Bundle\ApiBundle\Tests\Controller\User
  */
-class EditUserControllerTest extends \PHPUnit_Framework_TestCase
+class CreateUserControllerTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var EditUserController */
+    /** @var CreateUserController */
     private $controller;
 
     /** @var Form\FormInterface|\PHPUnit_Framework_MockObject_MockObject */
     private $formMock;
+
+    /** @var RouterInterface|\PHPUnit_Framework_MockObject_MockObject */
+    private $routerMock;
 
     protected function setUp()
     {
@@ -32,16 +36,16 @@ class EditUserControllerTest extends \PHPUnit_Framework_TestCase
             ->method('createNamed')
             ->will($this->returnValue($this->formMock));
 
-        /** @var EditUser|\PHPUnit_Framework_MockObject_MockObject $useCaseMock */
-        $useCaseMock = $this->getMockBuilder(EditUser::class)->disableOriginalConstructor()->getMock();
+        $this->routerMock = $this->getMockBuilder(RouterInterface::class)->getMock();
+        /** @var CreateUser|\PHPUnit_Framework_MockObject_MockObject $useCaseMock */
+        $useCaseMock = $this->getMockBuilder(CreateUser::class)->disableOriginalConstructor()->getMock();
 
-        $this->controller = new EditUserController($useCaseMock, $formFactoryMock);
+        $this->controller = new CreateUserController($useCaseMock, $formFactoryMock, $this->routerMock);
     }
 
     public function testCreateUserFormDataInvalidWillReturn400Response()
     {
         $request = $this->createExampleRequest();
-        $user = $this->createExampleUser();
 
         $this->formMock->expects($this->once())
             ->method('isValid')
@@ -49,22 +53,26 @@ class EditUserControllerTest extends \PHPUnit_Framework_TestCase
 
         $expectedResult = new View($this->formMock, 400);
 
-        $this->assertEquals($expectedResult, $this->controller->editUserAction($user, $request));
+        $this->assertEquals($expectedResult, $this->controller->createUserAction($request));
     }
 
-    public function testCreateUserFormDataValidWillReturn200Response()
+    public function testCreateUserFormDataValidWillReturn201Response()
     {
         $request = $this->createExampleRequest();
-        $user = $this->createExampleUser();
 
         $this->formMock->expects($this->once())
             ->method('isValid')
             ->will($this->returnValue(true));
 
-        $view = $this->controller->editUserAction($user, $request);
+        $this->routerMock->expects($this->once())
+            ->method('generate')
+            ->will($this->returnValue('http://example.com'));
+
+        $view = $this->controller->createUserAction($request);
 
         $this->assertInstanceOf(User::class, $view->getData());
-        $this->assertSame(200, $view->getStatusCode());
+        $this->assertSame(201, $view->getStatusCode());
+        $this->assertSame(['http://example.com'], $view->getHeaders()['location']);
     }
 
     /**
@@ -73,13 +81,5 @@ class EditUserControllerTest extends \PHPUnit_Framework_TestCase
     private function createExampleRequest()
     {
         return new Request();
-    }
-
-    /**
-     * @return User
-     */
-    private function createExampleUser()
-    {
-        return new User();
     }
 }

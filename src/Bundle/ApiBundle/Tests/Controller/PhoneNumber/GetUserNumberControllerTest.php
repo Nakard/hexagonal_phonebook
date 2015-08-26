@@ -1,8 +1,8 @@
 <?php
 
-namespace Arkon\Bundle\PhoneBookBundle\Tests\Controller;
+namespace Arkon\Bundle\ApiBundle\Tests\Controller\PhoneNumber;
 
-use Arkon\Bundle\PhoneBookBundle\Controller\GetUserNumberController;
+use Arkon\Bundle\ApiBundle\Controller\PhoneNumber\GetUserNumberController;
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\UseCase\GetUserNumber;
 use Arkon\Bundle\UserBundle\Entity\User;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class GetUserNumberControllerTest
- * @package Arkon\Bundle\PhoneBookBundle\Tests\Controller
+ * @package Arkon\Bundle\ApiBundle\Tests\Controller\PhoneNumber
  */
 class GetUserNumberControllerTest extends \PHPUnit_Framework_TestCase
 {

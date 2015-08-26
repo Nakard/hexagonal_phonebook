@@ -1,6 +1,6 @@
 <?php
 
-namespace Arkon\Bundle\ApiBundle\Controller;
+namespace Arkon\Bundle\ApiBundle\Controller\User;
 
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\EditUser;
@@ -11,7 +11,7 @@ use FOS\RestBundle\View\View;
 
 /**
  * Class EditUserController
- * @package Arkon\Bundle\ApiBundle\Controller
+ * @package Arkon\Bundle\ApiBundle\Controller\User
  */
 class EditUserController
 {
