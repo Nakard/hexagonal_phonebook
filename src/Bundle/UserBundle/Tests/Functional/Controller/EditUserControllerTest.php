@@ -11,7 +11,7 @@ class EditUserControllerTest extends UserControllerTestCase
     public function testEditNotExistingUserWillReturn404Response()
     {
         $newData = $this->createSampleUserForRequest('Test', 'User', 'Nickname');
-        $this->client->request('PUT', '/users/3', [], [], [], $this->encode($newData));
+        $this->client->request('PUT', '/users/100', [], [], [], $this->encode($newData));
         $response = $this->client->getResponse();
 
         $this->assertJsonResponse($response, 404);

@@ -29,8 +29,14 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, OrderedF
             ->setLastName('Friend')
             ->setNickname('baddude');
 
+        $user3 = (new User())->setId(3)
+            ->setFirstName('Janusz')
+            ->setLastName('Jarzyna')
+            ->setNickname('abrakadabra');
+
         $manager->persist($user1);
         $manager->persist($user2);
+        $manager->persist($user3);
 
         $manager->flush();
 

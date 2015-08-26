@@ -16,8 +16,8 @@ class CreateUserControllerTest extends UserControllerTestCase
 
         $this->assertJsonResponse($response, 201);
         $decodedResponse = $this->jsonDecoder->decode($response->getContent(), 'json');
-        $this->assertSame(3, $decodedResponse['id']);
-        $this->assertContains('/users/3', $response->headers->get('location'));
+        $this->assertSame(4, $decodedResponse['id']);
+        $this->assertContains('/users/4', $response->headers->get('location'));
     }
 
     /**

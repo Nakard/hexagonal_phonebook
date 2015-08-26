@@ -1,6 +1,7 @@
 <?php
 
 namespace Arkon\Bundle\UserBundle\Tests\Functional\Controller;
+
 use Arkon\Bundle\UserBundle\Entity\User;
 
 /**
@@ -11,7 +12,7 @@ class RemoveUserControllerTest extends UserControllerTestCase
 {
     public function testRemoveNotExistingUserWillReturn404Response()
     {
-        $this->client->request('DELETE', '/users/3');
+        $this->client->request('DELETE', '/users/100');
         $response = $this->client->getResponse();
 
         $this->assertJsonResponse($response, 404);

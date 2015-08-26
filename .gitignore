@@ -11,3 +11,4 @@ app/config/parameters.yml
 /web/bundles/
 /.idea
 tests/_output/*
+/logs
