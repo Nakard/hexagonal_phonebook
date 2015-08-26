@@ -18,7 +18,8 @@ class EditUserType extends AbstractUserType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-            'method' => 'PUT'
+            'method' => 'PUT',
+            'validation_groups' => ['edit']
         ]);
     }
 

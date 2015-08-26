@@ -18,7 +18,8 @@ class AddPhoneNumberType extends AbstractPhoneNumberType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-            'method' => 'POST'
+            'method' => 'POST',
+            'validation_groups' => ['add']
         ]);
     }
 

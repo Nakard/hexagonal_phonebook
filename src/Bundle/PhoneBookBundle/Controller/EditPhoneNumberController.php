@@ -5,6 +5,7 @@ namespace Arkon\Bundle\PhoneBookBundle\Controller;
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\UseCase\EditPhoneNumber;
 use FOS\RestBundle\View\View;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,6 +32,8 @@ class EditPhoneNumberController
     }
 
     /**
+     * @ParamConverter("user", class="ArkonUserBundle:User")
+     * @ParamConverter("phoneNumber", class="ArkonPhoneBookBundle:PhoneNumber", options={"id" = "numberId"})
      * @param PhoneNumber $phoneNumber
      * @param Request $request
      * @return View

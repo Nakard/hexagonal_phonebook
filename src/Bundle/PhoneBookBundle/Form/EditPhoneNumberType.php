@@ -18,7 +18,8 @@ class EditPhoneNumberType extends AbstractPhoneNumberType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-            'method' => 'PUT'
+            'method' => 'PUT',
+            'validation_groups' => ['edit']
         ]);
     }
 

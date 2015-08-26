@@ -17,8 +17,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="phone_numbers", indexes={@ORM\Index(name="number_idx", columns={"number"})})
  *
  * @Hateoas\Relation("self", href="expr('/users/' ~ object.getOwnerId() ~ '/numbers/' ~ object.getId())")
+ * @Hateoas\Relation(
+ *      "owner",
+ *      href = "expr('/users/' ~ object.getOwnerId())",
+ *      exclusion = @Hateoas\Exclusion(excludeIf="expr(object.getOwner() === null)")
+ * )
  *
- * @UniqueEntity(fields={"number"}, repositoryMethod="findByNumber", message="Number is already used.")
+ * @UniqueEntity(fields={"number"}, repositoryMethod="findByNumber", message="Number is already used.", groups={"add"})
  */
 class PhoneNumber
 {
@@ -42,9 +47,11 @@ class PhoneNumber
      *      min="0",
      *      minMessage="Phone number can contain only digits.",
      *      max="999999999999999",
-     *      maxMessage="Phone number can't be longer than 15 digits.")
-     * @Assert\Type(type="integer", message="{{ value }} is not a valid number.")
-     * @Assert\NotNull(message="Phone number is required.")
+     *      maxMessage="Phone number can't be longer than 15 digits.",
+     *      groups={"add", "edit"}
+     * )
+     * @Assert\Type(type="integer", message="{{ value }} is not a valid number.", groups={"add", "edit"})
+     * @Assert\NotNull(message="Phone number is required.", groups={"add", "edit"})
      *
      * @JMS\Type("integer")
      */
@@ -56,7 +63,7 @@ class PhoneNumber
      * @ORM\ManyToOne(targetEntity="Arkon\Bundle\UserBundle\Entity\User", inversedBy="phoneNumbers")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
-     * @JMS\Type("Arkon\Bundle\UserBundle\Entity\User")
+     * @JMS\Exclude()
      */
     private $owner;
 

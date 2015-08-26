@@ -1,0 +1,10 @@
+default:
+    extensions:
+        Behat\Symfony2Extension: ~
+    suites:
+        user_suite:
+            type: symfony_bundle
+            bundle: ArkonUserBundle
+        phonebook_suite:
+            type: symfony_bundle
+            bundle: ArkonPhoneBookBundle

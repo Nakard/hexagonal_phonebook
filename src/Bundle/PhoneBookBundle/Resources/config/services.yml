@@ -17,6 +17,12 @@ services:
         arguments:
             - @arkon.phonebook.get_user_number
 
+    arkon.phonebook.edit_number_controller:
+        class: Arkon\Bundle\PhoneBookBundle\Controller\EditPhoneNumberController
+        arguments:
+            - @arkon.phonebook.edit_number
+            - @form.factory
+
     # Services
     arkon.phonebook.phone_number_repository_db:
         class: Arkon\Bundle\PhoneBookBundle\Repository\DbPhoneNumberRepository

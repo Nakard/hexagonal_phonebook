@@ -43,15 +43,17 @@ class DbUserRepository extends AbstractDbRepository implements UserRepositoryInt
      */
     public function checkForUniqueNickname(array $criteria)
     {
-        return $this->createQueryBuilder('u')
+        $query = $this->createQueryBuilder('u')
             ->select('u.id, u.nickname')
             ->where('u.nickname = :nickname')
-            ->andWhere('u.id != :id')
             ->setMaxResults(1)
-            ->setParameter('nickname', $criteria['nickname'], \PDO::PARAM_STR)
-            ->setParameter('id', $criteria['id'], \PDO::PARAM_INT)
-            ->getQuery()
-            ->getResult();
+            ->setParameter('nickname', $criteria['nickname'], \PDO::PARAM_STR);
+
+        if (isset($criteria['id'])) {
+            $query->andWhere('u.id != :id')->setParameter('id', $criteria['id'], \PDO::PARAM_INT);
+        }
+
+        return $query->getQuery()->getResult();
     }
 
     /**

@@ -18,7 +18,8 @@ class CreateUserType extends AbstractUserType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-            'method' => 'POST'
+            'method' => 'POST',
+            'validation_groups' => ['add']
         ]);
     }
 

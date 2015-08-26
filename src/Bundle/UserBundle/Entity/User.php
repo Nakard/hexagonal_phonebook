@@ -18,12 +18,24 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table("users", indexes={@ORM\Index(name="nickname_idx", columns={"nickname"})})
  *
  * @UniqueEntity(
- *      fields={"nickname", "id"},
+ *      fields={"nickname"},
  *      repositoryMethod="checkForUniqueNickname",
- *      message="Nickname is already used."
+ *      message="Nickname is already used.",
+ *      groups={"add"}
+ * )
+ * @UniqueEntity(
+ *      fields={"id", "nickname"},
+ *      repositoryMethod="checkForUniqueNickname",
+ *      message="Nickname is already used",
+ *      groups={"edit"}
  * )
  *
  * @Hateoas\Relation("self", href="expr('/users/' ~ object.getId())")
+ * @Hateoas\Relation(
+ *      "phoneNumbers",
+ *      embedded="expr(object.getPhoneNumbers())",
+ *      exclusion=@Hateoas\Exclusion(excludeIf="expr(object.getPhoneNumbers() === null)")
+ * )
  *
  * @JMS\XmlRoot("user")
  */
@@ -49,11 +61,12 @@ class User
      *      min="3",
      *      max="50",
      *      minMessage="First name can't be shorter than 3 letters.",
-     *      maxMessage="First name can't be longer than 50 letters."
+     *      maxMessage="First name can't be longer than 50 letters.",
+     *      groups={"add", "edit"}
      * )
-     * @Assert\Regex(pattern="/^[a-z]+$/i", message="First name can only contain letters.")
-     * @Assert\Type(type="string", message="{{ value }} is not a string.")
-     * @Assert\NotNull(message="First name is required.")
+     * @Assert\Regex(pattern="/^[a-z]+$/i", message="First name can only contain letters.", groups={"add", "edit"})
+     * @Assert\Type(type="string", message="{{ value }} is not a string.", groups={"add", "edit"})
+     * @Assert\NotNull(message="First name is required.", groups={"add", "edit"})
      *
      * @JMS\Type("string")
      */
@@ -69,11 +82,11 @@ class User
      *      max="50",
      *      minMessage="Last name can't be shorter than 3 letters.",
      *      maxMessage="Last name can't be longer than 50 letters.",
-     *      groups={"edit"}
+     *      groups={"add", "edit"}
      * )
-     * @Assert\Regex(pattern="/^[a-z]+$/i", message="Last name can only contain letters.")
-     * @Assert\Type(type="string", message="{{ value }} is not a string.")
-     * @Assert\NotNull(message="Last name is required.")
+     * @Assert\Regex(pattern="/^[a-z]+$/i", message="Last name can only contain letters.", groups={"add", "edit"})
+     * @Assert\Type(type="string", message="{{ value }} is not a string.", groups={"add", "edit"})
+     * @Assert\NotNull(message="Last name is required.", groups={"add", "edit"})
      *
      * @JMS\Type("string")
      */
@@ -89,11 +102,15 @@ class User
      *      max="100",
      *      minMessage="Nickname can't be shorter than 5 letters.",
      *      maxMessage="Nickname can't be longer than 100 letters.",
-     *      groups={"edit"}
+     *      groups={"add", "edit"}
      * )
-     * @Assert\Regex(pattern="/^[a-z0-9]+$/i", message="Nickname can contain only letters and digits.")
-     * @Assert\Type(type="string", message="{{ value }} is not a string.")
-     * @Assert\NotNull(message="Nickname is required.")
+     * @Assert\Regex(
+     *      pattern="/^[a-z0-9]+$/i",
+     *      message="Nickname can contain only letters and digits.",
+     *      groups={"add", "edit"}
+     * )
+     * @Assert\Type(type="string", message="{{ value }} is not a string.", groups={"add", "edit"})
+     * @Assert\NotNull(message="Nickname is required.", groups={"add", "edit"})
      *
      * @JMS\Type("string")
      */
@@ -108,7 +125,7 @@ class User
      *      cascade={"persist"}
      * )
      *
-     * @JMS\Type("ArrayCollection<Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber>")
+     * @JMS\Exclude()
      */
     private $phoneNumbers;
 

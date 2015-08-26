@@ -19,3 +19,11 @@ arkon_phonebook_get_user_number:
         id: \d+
         numberId: \d+
         _method: GET
+
+arkon_phonebook_edit_number:
+    path: /users/{id}/numbers/{numberId}
+    defaults: { _controller: arkon.phonebook.edit_number_controller:editPhoneNumberAction }
+    requirements:
+        id: \d+
+        numberId: \d+
+        _method: PUT
