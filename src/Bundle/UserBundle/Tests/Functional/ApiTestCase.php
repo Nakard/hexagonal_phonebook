@@ -31,7 +31,7 @@ class ApiTestCase extends WebTestCase
 
         $this->client = $this->createClient(
             [],
-            ['CONTENT_TYPE' => 'application/json','HTTP_ACCEPT' => 'application/json']
+            ['CONTENT_TYPE' => 'application/json', 'HTTP_ACCEPT' => 'application/json']
         );
         $this->jsonDecoder = new JsonDecode(true);
         $this->jsonEncoder = new JsonEncode();
