@@ -1,3 +1,8 @@
+arkon_api:
+    resource: "@ArkonApiBundle/Resources/config/routing.yml"
+    prefix:   /
+    defaults: { _format: 'json'}
+
 arkon_user:
     resource: "@ArkonUserBundle/Resources/config/routing.yml"
     prefix:   /

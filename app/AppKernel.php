@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new Arkon\Bundle\ApiBundle\ArkonApiBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

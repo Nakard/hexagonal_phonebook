@@ -1,0 +1,3 @@
+arkon_api_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ArkonApiBundle:Default:index }
