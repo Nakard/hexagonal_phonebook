@@ -40,6 +40,7 @@ class CreateUser
         }
 
         $this->repository->save($user);
+        $this->repository->synchronize();
     }
 
     /**

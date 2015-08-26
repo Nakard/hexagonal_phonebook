@@ -51,7 +51,7 @@ class PhoneNumber
      *      groups={"add", "edit"}
      * )
      * @Assert\Type(type="integer", message="{{ value }} is not a valid number.", groups={"add", "edit"})
-     * @Assert\NotNull(message="Phone number is required.", groups={"add", "edit"})
+     * @Assert\NotBlank(message="Phone number is required.", groups={"add", "edit"})
      *
      * @JMS\Type("integer")
      */

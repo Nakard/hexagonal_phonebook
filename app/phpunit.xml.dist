@@ -6,6 +6,7 @@
          backupGlobals="false"
          colors="true"
          bootstrap="bootstrap.php.cache"
+         verbose="true"
 >
     <testsuites>
         <testsuite name="Project Test Suite">

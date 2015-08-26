@@ -1,0 +1,16 @@
+{
+    "code": 400,
+    "message": "Validation Failed",
+    "errors": {
+        "children": {
+            "firstName": {
+                "errors": [
+                    "First name can't be longer than 50 letters.",
+                    "First name can only contain letters."
+                ]
+            },
+            "lastName": {},
+            "nickname": {}
+        }
+    }
+}

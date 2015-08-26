@@ -18,7 +18,6 @@ class DbUserRepository extends AbstractDbRepository implements UserRepositoryInt
     public function save(User $user)
     {
         $this->getEntityManager()->persist($user);
-        $this->getEntityManager()->flush();
     }
 
     /**
@@ -27,14 +26,6 @@ class DbUserRepository extends AbstractDbRepository implements UserRepositoryInt
     public function findById($id)
     {
         return $this->find($id);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function nicknameExists($nickname)
-    {
-        return !empty($this->checkForUniqueNickname(['nickname' => $nickname]));
     }
 
     /**
@@ -62,7 +53,6 @@ class DbUserRepository extends AbstractDbRepository implements UserRepositoryInt
     public function remove(User $user)
     {
         $this->getEntityManager()->remove($user);
-        $this->getEntityManager()->flush();
     }
 
     /**

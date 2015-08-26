@@ -26,8 +26,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(
  *      fields={"id", "nickname"},
  *      repositoryMethod="checkForUniqueNickname",
- *      message="Nickname is already used",
- *      groups={"edit"}
+ *      message="Nickname is already used.",
+ *      groups={"edit"},
+ *      errorPath="nickname"
  * )
  *
  * @Hateoas\Relation("self", href="expr('/users/' ~ object.getId())")
@@ -66,7 +67,7 @@ class User
      * )
      * @Assert\Regex(pattern="/^[a-z]+$/i", message="First name can only contain letters.", groups={"add", "edit"})
      * @Assert\Type(type="string", message="{{ value }} is not a string.", groups={"add", "edit"})
-     * @Assert\NotNull(message="First name is required.", groups={"add", "edit"})
+     * @Assert\NotBlank(message="First name is required.", groups={"add", "edit"})
      *
      * @JMS\Type("string")
      */
@@ -86,7 +87,7 @@ class User
      * )
      * @Assert\Regex(pattern="/^[a-z]+$/i", message="Last name can only contain letters.", groups={"add", "edit"})
      * @Assert\Type(type="string", message="{{ value }} is not a string.", groups={"add", "edit"})
-     * @Assert\NotNull(message="Last name is required.", groups={"add", "edit"})
+     * @Assert\NotBlank(message="Last name is required.", groups={"add", "edit"})
      *
      * @JMS\Type("string")
      */
@@ -110,7 +111,7 @@ class User
      *      groups={"add", "edit"}
      * )
      * @Assert\Type(type="string", message="{{ value }} is not a string.", groups={"add", "edit"})
-     * @Assert\NotNull(message="Nickname is required.", groups={"add", "edit"})
+     * @Assert\NotBlank(message="Nickname is required.", groups={"add", "edit"})
      *
      * @JMS\Type("string")
      */
@@ -205,7 +206,7 @@ class User
      */
     public function setNickname($nickname)
     {
-        $this->nickname = $nickname;
+        $this->nickname = strtolower($nickname);
         return $this;
     }
 

@@ -30,12 +30,6 @@ interface UserRepositoryInterface extends RepositoryInterface
     public function findById($id);
 
     /**
-     * @param string $nickname
-     * @return bool
-     */
-    public function nicknameExists($nickname);
-
-    /**
      * @param User $user
      * @return void
      */

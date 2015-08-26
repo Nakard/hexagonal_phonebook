@@ -41,6 +41,7 @@ class EditUser
         }
 
         $this->repository->save($user);
+        $this->repository->synchronize();
     }
 
     /**

@@ -34,5 +34,6 @@ class RemoveUser
         }
 
         $this->repository->remove($user);
+        $this->repository->synchronize();
     }
 }
