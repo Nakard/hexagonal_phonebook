@@ -23,7 +23,7 @@ class GetUser
     }
 
     /**
-     * @param $id
+     * @param integer $id
      * @return User
      */
     public function getUser($id)
