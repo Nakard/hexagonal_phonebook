@@ -1,70 +1,68 @@
 arkon_user_listUsers:
     path: /users
     defaults: { _controller: arkon.user.list_users_controller:listUsersAction }
-    requirements:
-        _method: GET
+    methods: [GET]
 
 arkon_user_getUser:
     path: /users/{id}
     defaults: { _controller: arkon.user.get_user_controller:getUserAction }
+    methods: [GET]
     requirements:
         id: \d+
-        _method: GET
 
 arkon_user_createUser:
     path: /users
     defaults: { _controller: arkon.user.create_user_controller:createUserAction }
-    requirements:
-        _method: POST
+    methods: [POST]
 
 arkon_user_editUser:
     path: /users/{id}
     defaults: { _controller: arkon.user.edit_user_controller:editUserAction }
+    methods: [PUT]
     requirements:
-        _method: PUT
         id: \d+
 
 arkon_user_removeUser:
     path: /users/{id}
     defaults: { _controller: arkon.user.remove_user_controller:removeUserAction }
+    methods: [DELETE]
     requirements:
-        _method: DELETE
         id: \d+
 
 arkon_phonebook_add_number:
     path: /users/{id}/numbers
     defaults: { _controller: arkon.phonebook.add_number_controller:addNumberAction }
+    methods: [POST]
     requirements:
         id: \d+
-        _method: POST
 
 arkon_phonebook_get_user_numbers:
     path: /users/{id}/numbers
     defaults: { _controller: arkon.phonebook.get_user_numbers_controller:getUserNumbersAction }
+    methods: [GET]
     requirements:
         id: \d+
-        _method: GET
 
 arkon_phonebook_get_user_number:
     path: /users/{id}/numbers/{numberId}
     defaults: { _controller: arkon.phonebook.get_user_number_controller:getUserNumberAction }
+    methods: [GET]
     requirements:
         id: \d+
         numberId: \d+
-        _method: GET
 
 arkon_phonebook_edit_number:
     path: /users/{id}/numbers/{numberId}
     defaults: { _controller: arkon.phonebook.edit_number_controller:editPhoneNumberAction }
+    methods: [PUT]
     requirements:
         id: \d+
         numberId: \d+
-        _method: PUT
 
 arkon_phonebook_remove_number:
     path: /users/{id}/numbers/{numberId}
     defaults: { _controller: arkon.phonebook.remove_number_controller:removeNumberAction }
+    methods: [DELETE]
     requirements:
         id: \d+
         numberId: \d+
-        _method: DELETE
