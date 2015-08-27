@@ -12,7 +12,7 @@ class CreateUserControllerTest extends UserControllerTestCase
     public function testCreateProperUserWillReturn201Response()
     {
         $newUser = $this->createSampleUserForRequest('Test', 'User', 'tester123');
-        $this->client->request('POST', '/users', [], [], [], $this->encode(['user' => $newUser]));
+        $this->client->request('POST', '/users', [], [], [], $this->encode($newUser));
         $response = $this->client->getResponse();
 
         $this->assertJsonResponse($response, 201);
@@ -46,7 +46,7 @@ class CreateUserControllerTest extends UserControllerTestCase
      */
     public function testCreateInvalidUserWillReturn400Response($newUser, $expectedResponse)
     {
-        $this->client->request('POST', '/users', [], [], [], $this->encode(['user' => $newUser]));
+        $this->client->request('POST', '/users', [], [], [], $this->encode($newUser));
         $response = $this->client->getResponse();
 
         $this->assertJsonResponse($response, 400);

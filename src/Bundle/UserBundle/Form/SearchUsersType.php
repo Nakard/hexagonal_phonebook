@@ -20,9 +20,9 @@ class SearchUsersType extends AbstractType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('firstName');
-        $builder->add('lastName');
-        $builder->add('nickname');
+        $builder->add('firstName', null, ['description' => 'First name to search for']);
+        $builder->add('lastName', null, ['description' => 'Last name to search for']);
+        $builder->add('nickname', null, ['description' => 'Nickname to search for']);
     }
 
     /**

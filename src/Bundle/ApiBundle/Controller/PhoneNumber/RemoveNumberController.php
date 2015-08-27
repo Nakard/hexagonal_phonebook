@@ -5,6 +5,7 @@ namespace Arkon\Bundle\ApiBundle\Controller\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\UseCase\RemoveNumber;
 use FOS\RestBundle\Controller\Annotations\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
@@ -25,6 +26,21 @@ class RemoveNumberController
     }
 
     /**
+     * Removes phone number object
+     *
+     * @ApiDoc(
+     *      section="Number management",
+     *      description="Removes phone number object",
+     *      statusCodes={
+     *          204="Returned when successful",
+     *          404={
+     *               "User not found",
+     *               "Number not found",
+     *               "Number not belonging to user"
+     *          }
+     *      }
+     * )
+     *
      * @ParamConverter(
      *      "phoneNumber",
      *      class="ArkonPhoneBookBundle:PhoneNumber",

@@ -4,6 +4,7 @@ namespace Arkon\Bundle\ApiBundle\Controller\User;
 
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\EditUser;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,20 @@ class EditUserController
     }
 
     /**
+     * Edits user object
+     *
+     * @ApiDoc(
+     *      section="User management",
+     *      input={"class" = "Arkon\Bundle\UserBundle\Entity\User", "name" = "", "groups" = {"edit"}},
+     *      output={"class" = "Arkon\Bundle\UserBundle\Entity\User"},
+     *      description="Edits user object",
+     *      statusCodes={
+                200="Return when successful",
+     *          404="User not found",
+     *          400="Validation failed"
+     *      }
+     * )
+     *
      * @ParamConverter("user", class="ArkonUserBundle:User")
      * @param User $user
      * @param Request $request

@@ -13,7 +13,7 @@ class EditPhoneNumberControllerTest extends PhoneNumberControllerTestCase
     public function testEditNotExistingNumberWillReturn404Response()
     {
         $newNumber = $this->createSampleNumberForRequest(123);
-        $this->client->request('PUT', '/users/1/numbers/100', [], [], [], $this->encode(['phoneNumber' => $newNumber]));
+        $this->client->request('PUT', '/users/1/numbers/100', [], [], [], $this->encode($newNumber));
         $response = $this->client->getResponse();
 
         $this->assertJsonResponse($response, 404);
@@ -22,7 +22,7 @@ class EditPhoneNumberControllerTest extends PhoneNumberControllerTestCase
     public function testEditExistingNumberNotBelongingToSpecifiedUserWillReturn404Response()
     {
         $newNumber = $this->createSampleNumberForRequest(123);
-        $this->client->request('PUT', '/users/1/numbers/3', [], [], [], $this->encode(['phoneNumber' => $newNumber]));
+        $this->client->request('PUT', '/users/1/numbers/3', [], [], [], $this->encode($newNumber));
         $response = $this->client->getResponse();
 
         $this->assertJsonResponse($response, 404);
@@ -31,7 +31,7 @@ class EditPhoneNumberControllerTest extends PhoneNumberControllerTestCase
     public function testEditExisingNumberBelongingToSpecifiedUserWillReturn200Response()
     {
         $newNumber = $this->createSampleNumberForRequest(123);
-        $this->client->request('PUT', '/users/1/numbers/1', [], [], [], $this->encode(['phoneNumber' => $newNumber]));
+        $this->client->request('PUT', '/users/1/numbers/1', [], [], [], $this->encode($newNumber));
         $response = $this->client->getResponse();
 
         $this->assertJsonResponse($response, 200);

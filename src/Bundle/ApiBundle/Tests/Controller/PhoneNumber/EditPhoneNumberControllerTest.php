@@ -38,7 +38,7 @@ class EditPhoneNumberControllerTest extends \PHPUnit_Framework_TestCase
         $formFactoryMock = $this->getMockBuilder(Form\FormFactoryInterface::class)->getMock();
         $formFactoryMock->expects($this->once())
             ->method('createNamed')
-            ->with('phoneNumber', 'phone_number_edit', $this->number)
+            ->with('', 'phone_number_edit', $this->number)
             ->will($this->returnValue($this->formMock));
 
         $this->useCaseMock = $this->getMockBuilder(EditPhoneNumber::class)->disableOriginalConstructor()->getMock();

@@ -5,6 +5,7 @@ namespace Arkon\Bundle\ApiBundle\Controller\User;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\ListUsers;
 use FOS\RestBundle\View\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,6 +32,18 @@ class ListUsersController
     }
 
     /**
+     * Fetches list of users
+     *
+     * @ApiDoc(
+     *      section="User management",
+     *      input={"class" = "user_search", "name": ""},
+     *      output={"class" = "array<Arkon\Bundle\UserBundle\Entity\User>"},
+     *      description="Fetches list of users",
+     *      statusCodes={
+     *          200="Return when successful"
+     *      }
+     * )
+     *
      * @param Request $request
      * @return User[]
      */

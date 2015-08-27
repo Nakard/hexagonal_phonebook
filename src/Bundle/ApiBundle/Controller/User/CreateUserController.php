@@ -5,6 +5,7 @@ namespace Arkon\Bundle\ApiBundle\Controller\User;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\CreateUser;
 use FOS\RestBundle\View\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -37,6 +38,19 @@ class CreateUserController
     }
 
     /**
+     * Creates user object
+     *
+     * @ApiDoc(
+     *      section="User management",
+     *      input={"class" = "Arkon\Bundle\UserBundle\Entity\User", "name" = "", "groups" = {"add"}},
+     *      output={"class" = "Arkon\Bundle\UserBundle\Entity\User"},
+     *      description="Create user object",
+     *      statusCodes={
+                201="Returned when successful",
+     *          400="Validation failed"
+     *      }
+     * )
+     *
      * @param Request $request
      * @return View
      */
@@ -52,7 +66,7 @@ class CreateUserController
      */
     private function processForm(User $user, Request $request)
     {
-        $form = $this->formFactory->createNamed('user', 'user_create', $user);
+        $form = $this->formFactory->createNamed('', 'user_create', $user);
         $form->handleRequest($request);
 
         if (!$form->isValid()) {

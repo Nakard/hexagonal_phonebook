@@ -5,6 +5,7 @@ namespace Arkon\Bundle\ApiBundle\Controller\User;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\UseCase\RemoveUser;
 use FOS\RestBundle\Controller\Annotations\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
@@ -25,6 +26,17 @@ class RemoveUserController
     }
 
     /**
+     * Removes user object
+     *
+     * @ApiDoc(
+     *      section="User management",
+     *      description="Removes user object",
+     *      statusCodes={
+     *          204="Return when successful",
+     *          404="User not found",
+     *      }
+     * )
+     *
      * @ParamConverter("user", class="ArkonUserBundle:User")
      * @View(statusCode=204)
      * @param User $user

@@ -22,7 +22,7 @@
         "willdurand/hateoas-bundle": "~1.0",
         "doctrine/doctrine-migrations-bundle": "~1.0",
         "friendsofsymfony/rest-bundle": "~1.7",
-        "nelmio/api-doc-bundle": "~2.9"
+        "nakard/api-doc-bundle": "~2.9"
 
     },
     "require-dev": {
@@ -54,6 +54,12 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ]
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Nakard/NelmioApiDocBundle.git"
+        }
+    ],
     "config": {
         "bin-dir": "bin"
     },

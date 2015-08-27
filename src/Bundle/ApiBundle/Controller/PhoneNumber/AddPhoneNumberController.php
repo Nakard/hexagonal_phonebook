@@ -6,6 +6,7 @@ use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\PhoneBookBundle\UseCase\AddNumberToUser;
 use Arkon\Bundle\UserBundle\Entity\User;
 use FOS\RestBundle\View\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,6 +43,20 @@ class AddPhoneNumberController
     }
 
     /**
+     * Creates phone number object
+     *
+     * @ApiDoc(
+     *      section="Number management",
+     *      input={"class" = "Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber", "name" = "", "groups" = {"add"}},
+     *      output={"class" = "Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber"},
+     *      description="Creates phone number object",
+     *      statusCodes={
+     *          201="Returned when successful",
+     *          400="Validation failed",
+     *          404="User not found"
+     *      }
+     * )
+     *
      * @ParamConverter("user", class="ArkonUserBundle:User")
      * @param User $user
      * @param Request $request

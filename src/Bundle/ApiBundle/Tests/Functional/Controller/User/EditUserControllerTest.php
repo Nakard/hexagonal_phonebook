@@ -27,7 +27,7 @@ class EditUserControllerTest extends UserControllerTestCase
 
         $this->assertJsonResponse($response, 200);
         $decoded = $this->decode($response->getContent());
-        $this->assertSame('Arek', $decoded['first_name']);
+        $this->assertSame('Arek', $decoded['firstName']);
         /** @var User $user */
         $user = $this->getObjectManager()->getRepository(User::class)->find(1);
         $this->assertSame('Arek', $user->getFirstName());
