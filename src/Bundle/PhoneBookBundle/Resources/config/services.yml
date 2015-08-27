@@ -2,8 +2,7 @@ services:
     # Services
     arkon.phonebook.phone_number_repository_db:
         class: Arkon\Bundle\PhoneBookBundle\Repository\DbPhoneNumberRepository
-        factory_service: doctrine
-        factory_method: getRepository
+        factory: ['@doctrine', getRepository]
         arguments:
             - ArkonPhoneBookBundle:PhoneNumber
 

@@ -1346,17 +1346,17 @@
         },
         {
             "name": "nakard/api-doc-bundle",
-            "version": "2.9.1",
+            "version": "2.9.2",
             "target-dir": "Nelmio/ApiDocBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nakard/NelmioApiDocBundle.git",
-                "reference": "a1c0de3da4e639f41ae5181cffe0a5518d3470f0"
+                "reference": "be3e61f87bfdad68d8573fbb81a831f2c22bee7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nakard/NelmioApiDocBundle/zipball/a1c0de3da4e639f41ae5181cffe0a5518d3470f0",
-                "reference": "a1c0de3da4e639f41ae5181cffe0a5518d3470f0",
+                "url": "https://api.github.com/repos/Nakard/NelmioApiDocBundle/zipball/be3e61f87bfdad68d8573fbb81a831f2c22bee7d",
+                "reference": "be3e61f87bfdad68d8573fbb81a831f2c22bee7d",
                 "shasum": ""
             },
             "require": {
@@ -1422,9 +1422,9 @@
                 "rest"
             ],
             "support": {
-                "source": "https://github.com/Nakard/NelmioApiDocBundle/tree/2.9.1"
+                "source": "https://github.com/Nakard/NelmioApiDocBundle/tree/2.9.2"
             },
-            "time": "2015-08-27 09:48:40"
+            "time": "2015-08-27 18:15:01"
         },
         {
             "name": "phpcollection/phpcollection",
