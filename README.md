@@ -3,6 +3,7 @@ hexagonal_phonebook
 
 [![Build Status](https://travis-ci.org/Nakard/hexagonal_phonebook.svg?branch=master)](https://travis-ci.org/Nakard/hexagonal_phonebook)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/594db697-8cba-423b-93d0-0b3a8b3f7ac1/mini.png)](https://insight.sensiolabs.com/projects/594db697-8cba-423b-93d0-0b3a8b3f7ac1)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Nakard/hexagonal_phonebook/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Nakard/hexagonal_phonebook/?branch=master)
 
 Demo application working as REST API with phone book functionality.
 
