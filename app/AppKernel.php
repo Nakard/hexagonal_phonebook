@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Arkon\Bundle\ApiBundle\ArkonApiBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

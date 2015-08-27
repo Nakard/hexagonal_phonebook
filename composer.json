@@ -21,7 +21,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "willdurand/hateoas-bundle": "~1.0",
         "doctrine/doctrine-migrations-bundle": "~1.0",
-        "friendsofsymfony/rest-bundle": "~1.7"
+        "friendsofsymfony/rest-bundle": "~1.7",
+        "nelmio/api-doc-bundle": "~2.9"
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

@@ -2,3 +2,7 @@ arkon_api:
     resource: "@ArkonApiBundle/Resources/config/routing.yml"
     prefix:   /
     defaults: { _format: 'json'}
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
