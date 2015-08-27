@@ -7,7 +7,7 @@
          colors="true"
          bootstrap="bootstrap.php.cache"
          verbose="true"
-         processIsolation="true"
+         processIsolation="false"
 >
     <testsuites>
         <testsuite name="Project Test Suite">
