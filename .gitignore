@@ -12,3 +12,5 @@ app/config/parameters.yml
 /.idea
 tests/_output/*
 /logs
+/app/build/logs/*
+!app/build/logs/.gitkeep

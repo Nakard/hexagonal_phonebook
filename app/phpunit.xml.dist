@@ -8,6 +8,7 @@
          bootstrap="bootstrap.php.cache"
          verbose="true"
          processIsolation="false"
+         debug="true"
 >
     <testsuites>
         <testsuite name="Project Test Suite">
@@ -16,12 +17,6 @@
             <directory>../src/*Bundle/Tests</directory>
         </testsuite>
     </testsuites>
-
-    <!--
-    <php>
-        <server name="KERNEL_DIR" value="/path/to/your/app/" />
-    </php>
-    -->
 
     <filter>
         <whitelist>
@@ -36,4 +31,8 @@
             </exclude>
         </whitelist>
     </filter>
+
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml" />
+    </logging>
 </phpunit>
