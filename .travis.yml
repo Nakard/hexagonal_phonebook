@@ -1,9 +1,7 @@
 language: php
 
 env:
-  - SYMFONY_DEPRECATIONS_HELPER=weak
-  - TRAVIS
-  - TRAVIS_JOB_ID
+  - SYMFONY_DEPRECATIONS_HELPER=weak TRAVIS TRAVIS_JOB_ID
 
 php:
   - 5.6
