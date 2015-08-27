@@ -5,7 +5,6 @@ namespace Arkon\Bundle\PhoneBookBundle\Repository;
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\Repository\AbstractDbRepository;
-use Doctrine\ORM\Query;
 
 /**
  * Class DbPhoneNumberRepository
