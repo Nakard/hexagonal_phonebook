@@ -17,4 +17,4 @@ script:
   - phpunit --configuration app/phpunit.xml
 
 after_script:
-  - vendor/bin/coveralls -v
+  - bin/coveralls -v -c .coveralls.yml
