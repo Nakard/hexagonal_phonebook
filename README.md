@@ -8,8 +8,8 @@ Demo application working as REST API with phone book functionality.
 
 Inspired by [hexagonal architecture](http://alistair.cockburn.us/Hexagonal+architecture).
 
-API documentation is generated with [NelmioApiDocBundle](https://github.com/nelmio/NelmioApiDocBundle) and is
-available at `http://{app_host}/api/doc`
+API documentation is generated with [NelmioApiDocBundle](https://github.com/nelmio/NelmioApiDocBundle) and is available at `http://{app_host}/api/doc`
 
 Prior to app usage migrations need to run with `app/console doctrine:migrations:migrate`
+
 Test fixtures can be found in `UserBundle` and `PhoneBookBundle` tests directories
