@@ -24,7 +24,7 @@ class GetUser
 
     /**
      * @param integer $id
-     * @return User
+     * @return User|object|null
      */
     public function getUser($id)
     {
