@@ -64,7 +64,7 @@ class EditUserController
      */
     private function processForm(User $user, Request $request)
     {
-        $form = $this->formFactory->createNamed('user', 'user_edit', $user);
+        $form = $this->formFactory->createNamed('', 'user_edit', $user);
         $form->handleRequest($request);
 
         if (!$form->isValid()) {

@@ -22,7 +22,7 @@ class EditUserControllerTest extends UserControllerTestCase
     public function testEditExistingUserWithProperDataWillReturn200Response()
     {
         $newData = $this->createSampleUserForRequest('Arek', 'Moskwa', 'Nakard');
-        $this->client->request('PUT', '/users/1', [], [], [], $this->encode(['user' => $newData]));
+        $this->client->request('PUT', '/users/1', [], [], [], $this->encode($newData));
         $response = $this->client->getResponse();
 
         $this->assertJsonResponse($response, 200);
@@ -56,7 +56,7 @@ class EditUserControllerTest extends UserControllerTestCase
      */
     public function testCreateInvalidUserWillReturn400Response($editUser, $expectedResponse)
     {
-        $this->client->request('PUT', '/users/1', [], [], [], $this->encode(['user' => $editUser]));
+        $this->client->request('PUT', '/users/1', [], [], [], $this->encode($editUser));
         $response = $this->client->getResponse();
 
         $this->assertJsonResponse($response, 400);

@@ -4,6 +4,7 @@ namespace Arkon\Bundle\UserBundle\Repository;
 
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\Search\UserSearch;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Interface UserRepositoryInterface
@@ -13,7 +14,7 @@ interface UserRepositoryInterface extends RepositoryInterface
 {
     /**
      * @param UserSearch|null $search
-     * @return User[]
+     * @return User[]|ArrayCollection
      */
     public function search(UserSearch $search = null);
 
@@ -25,7 +26,7 @@ interface UserRepositoryInterface extends RepositoryInterface
 
     /**
      * @param int $id
-     * @return User
+     * @return User|object|null
      */
     public function findById($id);
 
