@@ -32,8 +32,11 @@ class EditPhoneNumberController
     }
 
     /**
-     * @ParamConverter("user", class="ArkonUserBundle:User")
-     * @ParamConverter("phoneNumber", class="ArkonPhoneBookBundle:PhoneNumber", options={"id" = "numberId"})
+     * @ParamConverter(
+     *      "phoneNumber",
+     *      class="ArkonPhoneBookBundle:PhoneNumber",
+     *      options={"mapping": {"id": "owner", "numberId": "id"}}
+     * )
      * @param PhoneNumber $phoneNumber
      * @param Request $request
      * @return View

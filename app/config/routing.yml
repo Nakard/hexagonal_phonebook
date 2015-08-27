@@ -2,9 +2,3 @@ arkon_api:
     resource: "@ArkonApiBundle/Resources/config/routing.yml"
     prefix:   /
     defaults: { _format: 'json'}
-
-arkon_phone_book:
-    resource: "@ArkonPhoneBookBundle/Resources/config/routing.yml"
-    prefix:   /
-    defaults: { _format: 'json' }
-

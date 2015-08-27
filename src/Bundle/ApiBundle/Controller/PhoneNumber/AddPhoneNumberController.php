@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Class AddPhoneNumberController
+ * Class AddPhoneNumberControllerTest
  * @package Arkon\Bundle\ApiBundle\Controller\PhoneNumber
  */
 class AddPhoneNumberController

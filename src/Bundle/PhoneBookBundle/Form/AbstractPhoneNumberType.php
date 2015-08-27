@@ -20,7 +20,7 @@ abstract class AbstractPhoneNumberType extends AbstractType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('number', 'integer');
+        $builder->add('number', 'integer', ['invalid_message' => '{{ value }} is not a valid number.']);
     }
 
     /**

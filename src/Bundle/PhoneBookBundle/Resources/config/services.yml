@@ -41,3 +41,8 @@ services:
         arguments:
             - @arkon.phonebook.phone_number_repository_db
             - @validator
+
+    arkon.phonebook.remove_number:
+        class: Arkon\Bundle\PhoneBookBundle\UseCase\RemoveNumber
+        arguments:
+            - @arkon.phonebook.phone_number_repository_db

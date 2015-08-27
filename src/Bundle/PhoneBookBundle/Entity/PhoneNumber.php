@@ -99,7 +99,7 @@ class PhoneNumber
      */
     public function setNumber($number)
     {
-        $this->number = $number;
+        $this->number = (int) $number;
         return $this;
     }
 

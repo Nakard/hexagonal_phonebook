@@ -1,5 +1,5 @@
 services:
-    # Controllers
+    # User controllers
     arkon.user.list_users_controller:
         class: Arkon\Bundle\ApiBundle\Controller\User\ListUsersController
         arguments:
@@ -29,7 +29,7 @@ services:
         arguments:
             - @arkon.user.remove_user
 
-    # Controllers
+    # Phonebook controllers
     arkon.phonebook.add_number_controller:
         class: Arkon\Bundle\ApiBundle\Controller\PhoneNumber\AddPhoneNumberController
         arguments:
@@ -52,3 +52,8 @@ services:
         arguments:
             - @arkon.phonebook.edit_number
             - @form.factory
+
+    arkon.phonebook.remove_number_controller:
+        class: Arkon\Bundle\ApiBundle\Controller\PhoneNumber\RemoveNumberController
+        arguments:
+            - @arkon.phonebook.remove_number

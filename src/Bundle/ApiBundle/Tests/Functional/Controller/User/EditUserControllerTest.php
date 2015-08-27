@@ -2,6 +2,8 @@
 
 namespace Arkon\Bundle\ApiBundle\Tests\Functional\Controller\User;
 
+use Arkon\Bundle\UserBundle\Entity\User;
+
 /**
  * Class EditUserControllerTest
  * @package Arkon\Bundle\ApiBundle\Tests\Functional\Controller\User
@@ -26,6 +28,9 @@ class EditUserControllerTest extends UserControllerTestCase
         $this->assertJsonResponse($response, 200);
         $decoded = $this->decode($response->getContent());
         $this->assertSame('Arek', $decoded['first_name']);
+        /** @var User $user */
+        $user = $this->getObjectManager()->getRepository(User::class)->find(1);
+        $this->assertSame('Arek', $user->getFirstName());
     }
 
     /**
@@ -56,8 +61,8 @@ class EditUserControllerTest extends UserControllerTestCase
 
         $this->assertJsonResponse($response, 400);
         $this->assertSame(
-            $this->jsonDecoder->decode($expectedResponse, 'json'),
-            $this->jsonDecoder->decode($response->getContent(), 'json')
+            $this->decode($expectedResponse),
+            $this->decode($response->getContent())
         );
     }
 }

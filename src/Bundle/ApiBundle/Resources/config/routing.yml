@@ -60,3 +60,11 @@ arkon_phonebook_edit_number:
         id: \d+
         numberId: \d+
         _method: PUT
+
+arkon_phonebook_remove_number:
+    path: /users/{id}/numbers/{numberId}
+    defaults: { _controller: arkon.phonebook.remove_number_controller:removeNumberAction }
+    requirements:
+        id: \d+
+        numberId: \d+
+        _method: DELETE

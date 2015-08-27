@@ -5,6 +5,7 @@ namespace Arkon\Bundle\PhoneBookBundle\Repository;
 use Arkon\Bundle\PhoneBookBundle\Entity\PhoneNumber;
 use Arkon\Bundle\UserBundle\Entity\User;
 use Arkon\Bundle\UserBundle\Repository\AbstractDbRepository;
+use Doctrine\ORM\Query;
 
 /**
  * Class DbPhoneNumberRepository
@@ -45,7 +46,6 @@ class DbPhoneNumberRepository extends AbstractDbRepository implements PhoneNumbe
     public function findUserNumber(User $user, $numberId)
     {
         return $this->createQueryBuilder('pn')
-            ->select('pn.id', 'pn.number')
             ->where('pn.owner = :user_id')
             ->andWhere('pn.id = :number_id')
             ->setParameter('user_id', $user->getId(), \PDO::PARAM_INT)
@@ -69,5 +69,13 @@ class DbPhoneNumberRepository extends AbstractDbRepository implements PhoneNumbe
     public function findById($id)
     {
         return $this->find($id);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function remove(PhoneNumber $number)
+    {
+        $this->getEntityManager()->remove($number);
     }
 }

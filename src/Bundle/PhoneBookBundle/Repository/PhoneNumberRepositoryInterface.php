@@ -42,4 +42,10 @@ interface PhoneNumberRepositoryInterface extends RepositoryInterface
      * @return PhoneNumber
      */
     public function findById($id);
+
+    /**
+     * @param PhoneNumber $number
+     * @return void
+     */
+    public function remove(PhoneNumber $number);
 }
