@@ -8,9 +8,13 @@ php:
   - 7.0
   - nightly
 
+before_install:
+  - composer self-update
+
+install:
+  - composer install
+
 before_script:
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install --no-interaction
   - cp app/phpunit.xml.dist app/phpunit.xml
 
 script:
